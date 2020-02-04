@@ -1,0 +1,7 @@
+{
+  "name": "PaisDePet",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

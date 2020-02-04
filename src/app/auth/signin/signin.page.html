@@ -1,0 +1,133 @@
+<ion-content class="ion-padding">
+
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col size-sm="8" size-md="4" size-lg="6" size-xl="3">
+        <img src="../assets/img/paisdepet-logo.png" />
+
+        <div class="separador-img-login"></div>
+
+        <form [formGroup]="authForm" (submit)="signin(authProviders.Email)">
+
+          <ng-container *ngIf="!configs.isSignIn">
+             <ion-item lines="none" class="campo-form">
+            <ion-input
+              formControlName="nome"
+              type="text"
+              placeholder="Nome"
+            ></ion-input>
+            <ion-note
+              slot="end"
+              color="tertiary"
+              *ngIf="nome.dirty && nome.hasError('required')">
+              Obrigatório
+            </ion-note>
+            <ion-note
+              slot="end"
+              color="tertiary"
+              *ngIf="nome.dirty && nome.hasError('minlength')">
+              Min 3 caracteres
+            </ion-note>
+            <ion-icon
+              name="person"
+              color="light"
+              slot="end">
+            </ion-icon>
+          </ion-item>
+          </ng-container>
+
+          <ion-item lines="none" class="campo-form">
+            <ion-input
+              formControlName="email"
+              type="email"
+              placeholder="Login"
+              inputmode="email"
+              autofocus="false"
+            ></ion-input>
+            <ion-note
+              slot="end"
+              color="tertiary"
+              *ngIf="email.dirty && email.hasError('required')">
+              Obrigatório
+            </ion-note>
+            <ion-note
+              slot="end"
+              color="tertiary"
+              *ngIf="email.dirty && email.hasError('email')">
+              Email Inválido
+            </ion-note>
+            <ion-icon
+              name="mail"
+              color="light"
+              slot="end">
+            </ion-icon>
+          </ion-item>
+
+          <ion-item lines="none" class="campo-form">
+            <ion-input
+              formControlName="senha"
+              type="password"
+              placeholder="Senha"
+            ></ion-input>
+            <ion-note
+              slot="end"
+              color="tertiary"
+              *ngIf="senha.dirty && senha.hasError('required')">
+              Obrigatório
+            </ion-note>
+            <ion-note
+              slot="end"
+              color="tertiary"
+              *ngIf="senha.dirty && senha.hasError('minlength')">
+              Min 6 caracteres
+            </ion-note>
+            <ion-icon
+              name="lock"
+              color="light"
+              slot="end">
+            </ion-icon>
+          </ion-item>
+
+          <ion-button
+            type="submit"
+            expand="block"
+            shape="round"
+            color="tertiary"
+            [disabled]="authForm.invalid"
+            (click)="signin()">
+            {{ configs.action }}
+          </ion-button>
+
+          <div class="label-ou ion-text-center">
+            <ion-label color="light">- ou -</ion-label>
+          </div>
+
+          <ion-button fill="clear" expand="block" color="tertiary" (click)="signin(authProviders.Facebook)">
+            Login com Facebook
+            <ion-icon name="logo-facebook" size="large" slot="end" color="tertiary"></ion-icon>
+          </ion-button>
+
+        </form>
+
+        <ion-button
+          *ngIf="configs.isSignIn"
+          class="btn-font-size"
+          expand="block"
+          fill="clear"
+          color="light"
+          >Esqueci minha senha</ion-button>
+
+        <div *ngIf="!configs.isSignIn"></div>
+
+        <ion-button
+          class="btn-font-size"
+          expand="block"
+          fill="clear"
+          color="light"
+          (click)="novaConta()"
+          >{{ configs.actionChange }}</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
