@@ -5,17 +5,22 @@ import { auth } from 'firebase/app';
 import { User, AuthProvider, AuthOptions } from './auth.types';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Platform } from '@ionic/angular';
+import * as firebase from 'firebase';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
   /* como é um observable por convensão se coloca o $ no final*/
   statusDaAutenticacao$: Observable<firebase.User>;
 
   constructor(
-    private afAuth: AngularFireAuth) {
+    private afAuth: AngularFireAuth,
+    private platform: Platform,
+    private facebook: Facebook
+  ) {
     /* recebe o estado da autenticação */
     this.statusDaAutenticacao$ = this.afAuth.authState;
   }
@@ -27,10 +32,14 @@ export class AuthService {
   caso contrario retorna true
   */
   get estaAutenticado(): Observable<boolean> {
-    return this.statusDaAutenticacao$
-      .pipe(
-        map((user => user !== null))
-      );
+    return this.statusDaAutenticacao$.pipe(map(user => user !== null));
+  }
+
+  /*
+  retorna as informações desejadas
+  */
+  getInfoUsuario() {
+    return this.statusDaAutenticacao$;
   }
 
   /*
@@ -42,15 +51,13 @@ export class AuthService {
   ou um cadastro novo usando o if ternário, passando sempre a propriedade user que
   recebe nome, email e senha.
   */
-  autenticacao({ isSignIn, provider, user }: AuthOptions): Promise<auth.UserCredential> {
+  autenticacao({ isSignIn, user, provider }: AuthOptions): Promise<auth.UserCredential> {
     let operacao: Promise<auth.UserCredential>;
 
     if (provider !== AuthProvider.Email) {
       operacao = this.loginComPopup(provider);
     } else {
-    operacao = isSignIn
-      ? this.loginComEmailESenha(user)
-      : this.cadastrarComEmailESenha(user);
+      operacao = isSignIn ? this.loginComEmailESenha(user) : this.cadastrarComEmailESenha(user);
     }
     return operacao;
   }
@@ -76,9 +83,7 @@ export class AuthService {
   novos dados como o nome e uma url de foto.
   */
   private cadastrarComEmailESenha({ email, senha, nome }: User): Promise<auth.UserCredential> {
-    return this.afAuth.auth
-    .createUserWithEmailAndPassword(email, senha)
-    .then(credencials =>
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, senha).then(credencials =>
       credencials.user
         .updateProfile({
           displayName: nome,
@@ -93,14 +98,22 @@ export class AuthService {
   Neste caso criamos um case para que caso queira adicionar novas formas de login
   podemos incluir sem precisar mexer na lógica, apenas gerando um novo "case".
   */
-  private loginComPopup(provider: AuthProvider): Promise<auth.UserCredential> {
-    let loginComProvider = null;
+  private async loginComPopup(provider: AuthProvider): Promise<auth.UserCredential> {
 
     switch (provider) {
       case AuthProvider.Facebook: // referenciando o enum no auth.types.ts
-        loginComProvider = new auth.FacebookAuthProvider();
+        if (!this.platform.is('desktop')) {
+          await this.facebook.login(['email']).then((result: FacebookLoginResponse) => {
+            const fbCredential = firebase.auth.FacebookAuthProvider.credential(
+              result.authResponse.accessToken
+            );
+            // firebase.auth().signInWithCredential(fbCredential);
+            return this.afAuth.auth.signInWithCredential(fbCredential);
+          });
+        } else {
+          return this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider());
+        }
         break;
     }
-    return this.afAuth.auth.signInWithPopup(loginComProvider);
   }
 }

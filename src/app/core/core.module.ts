@@ -10,6 +10,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
+import { Facebook } from '@ionic-native/facebook/ngx';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { environment } from 'src/environments/environment';
   providers: [
     StatusBar,
     SplashScreen,
+    Facebook,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ]
 })

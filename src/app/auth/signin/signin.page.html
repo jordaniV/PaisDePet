@@ -3,13 +3,15 @@
   <ion-grid>
     <ion-row justify-content-center>
       <ion-col size-sm="8" size-md="4" size-lg="6" size-xl="3">
-        <img src="../assets/img/paisdepet-logo.png" />
+        <img src="../assets/img/paisdepet-logo.png" (click)="segredo()" />
 
         <div class="separador-img-login"></div>
 
+<!-- =============== início forms =================== -->
         <form [formGroup]="authForm" (submit)="signin(authProviders.Email)">
 
           <ng-container *ngIf="!configs.isSignIn">
+
              <ion-item lines="none" class="campo-form">
             <ion-input
               formControlName="nome"
@@ -34,6 +36,7 @@
               slot="end">
             </ion-icon>
           </ion-item>
+
           </ng-container>
 
           <ion-item lines="none" class="campo-form">
@@ -62,7 +65,7 @@
               slot="end">
             </ion-icon>
           </ion-item>
-
+<!-- ================================== -->
           <ion-item lines="none" class="campo-form">
             <ion-input
               formControlName="senha"
@@ -87,45 +90,55 @@
               slot="end">
             </ion-icon>
           </ion-item>
-
+<!-- ================================== -->
           <ion-button
             type="submit"
             expand="block"
             shape="round"
             color="tertiary"
-            [disabled]="authForm.invalid"
-            (click)="signin()">
+            [disabled]="authForm.invalid">
             {{ configs.action }}
           </ion-button>
-
-          <div class="label-ou ion-text-center">
+<!-- ================================== -->
+          <div *ngIf="configs.isSignIn" class="label-ou ion-text-center">
             <ion-label color="light">- ou -</ion-label>
           </div>
-
-          <ion-button fill="clear" expand="block" color="tertiary" (click)="signin(authProviders.Facebook)">
-            Login com Facebook
-            <ion-icon name="logo-facebook" size="large" slot="end" color="tertiary"></ion-icon>
-          </ion-button>
-
         </form>
-
+<!-- =============== fim forms =================== -->
+        <ion-button
+            *ngIf="configs.isSignIn"
+            fill="clear" expand="block"
+            color="tertiary"
+            (click)="signin(authProviders.Facebook)">
+            <ion-icon
+              name="logo-facebook"
+              size="large"
+              slot="start"
+              color="tertiary">
+            </ion-icon>
+              Login com Facebook
+          </ion-button>
+<!-- ================================== -->
         <ion-button
           *ngIf="configs.isSignIn"
           class="btn-font-size"
           expand="block"
           fill="clear"
           color="light"
+          (click)="recuperaSenha()"
           >Esqueci minha senha</ion-button>
-
+<!-- ================================== -->
         <div *ngIf="!configs.isSignIn"></div>
-
+<!-- ================================== -->
         <ion-button
           class="btn-font-size"
           expand="block"
           fill="clear"
           color="light"
-          (click)="novaConta()"
-          >{{ configs.actionChange }}</ion-button>
+          (click)="cadastrarNovaConta()"
+          >- {{ configs.actionChange }} -
+        </ion-button>
+<!-- ================================== -->
       </ion-col>
     </ion-row>
   </ion-grid>

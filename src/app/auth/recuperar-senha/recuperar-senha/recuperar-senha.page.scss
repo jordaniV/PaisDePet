@@ -1,0 +1,30 @@
+ion-content {
+  --background: #fff url("../../../../assets/img/bg.jpg") no-repeat center center / cover;
+}
+
+ion-input {
+  --placeholder-color: #f4f5f8;
+  --placeholder-opacity: 100%;
+}
+
+ion-textarea {
+  margin-top: 40%;
+}
+
+.campo-form {
+  --border-width: 2px;
+  --border-color: #f4f5f8;
+  --border-radius: 100px;
+  --background: rgba(0, 0, 0, 0);
+  margin-bottom: 5%;
+  color: #fff;
+}
+
+.separador-elems-login {
+  height: 5%;
+}
+
+.separador-botoes {
+  height: 2%;
+}
+

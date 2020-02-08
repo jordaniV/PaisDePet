@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'signin',
     loadChildren: () => import('./auth/signin/signin.module').then( m => m.SigninPageModule)
+  },
+  {
+    path: 'recuperar-senha',
+    loadChildren: () => import('./auth/recuperar-senha/recuperar-senha/recuperar-senha.module').then( m => m.RecuperarSenhaPageModule)
   }
 ];
 

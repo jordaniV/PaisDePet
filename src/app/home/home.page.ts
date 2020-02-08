@@ -1,22 +1,33 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../core/services/auth.service';
 import { OverlayService } from '../core/services/overlay.service';
-import { Button } from 'protractor';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  styleUrls: ['home.page.scss']
 })
-export class HomePage {
+export class HomePage implements OnInit {
+
+  nome: string;
 
   constructor(
-    private route: Router,
+    private activatedRoute: ActivatedRoute,
     private authService: AuthService,
-    private overlayService: OverlayService) {}
+    private route: Router,
+    private overlayService: OverlayService
+  ) {}
 
+  ngOnInit() {
+    this.authService.getInfoUsuario().subscribe(user => {
+      this.nome = user.displayName;
+    });
+  }
 
+  /*
+  logout do sistema
+  */
   logout() {
     this.overlayService.alert({
       header: 'Sair',
@@ -38,5 +49,4 @@ export class HomePage {
       ]
     });
   }
-
 }
