@@ -1,6 +1,6 @@
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AuthProvider } from 'src/app/core/services/auth.types';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MenuController } from '@ionic/angular';
 import { OverlayService } from 'src/app/core/services/overlay.service';
@@ -12,7 +12,7 @@ import * as firebase from 'firebase';
   templateUrl: './signin.page.html',
   styleUrls: ['./signin.page.scss']
 })
-export class SigninPage implements OnInit {
+export class SigninPage implements OnInit, OnDestroy {
   authForm: FormGroup;
   authProviders = AuthProvider;
 
@@ -33,21 +33,22 @@ export class SigninPage implements OnInit {
     private authService: AuthService,
     private overlayService: OverlayService,
     private router: Router
-  ) {}
+  ) { this.menuCtrl.enable(false); } // ao rodar a aplicação não vai aparecer o menu
 
   ngOnInit(): void {
+    this.menuCtrl.enable(false);
     this.authForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, Validators.minLength(6)]]
     });
-  }
-
-  ionViewDidEnter() {
-    this.menuCtrl.enable(false); // ao rodar a aplicação não vai aparecer o menu
     this.authForm.reset();
   }
 
-  ionViewDidLeave() {
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+  }
+
+  ngOnDestroy(): void {
     this.menuCtrl.enable(true); // quando o ciclo de vida da pagina acabar( sair da pagina de login) ele libera o menu novamente
   }
 

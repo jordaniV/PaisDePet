@@ -3,18 +3,20 @@
     <ion-row justify-content-center>
       <ion-col size-sm="8" size-md="4" size-lg="6" size-xl="3">
 
-        <ion-textarea color="light">Para recuperar sua senha digite seu email no campo abaixo, você vai receber um email com as informações de alteração.</ion-textarea>
+        <ion-textarea class="ion-text-center" color="light">Se você fez cadastro com email e senha, basta digitar seu email no campo abaixo. Você vai receber um email com as informações da alteração de sua senha. Caso tenha tentado acessar como facebook é necessário redefinir sua senha dentro do facebook.</ion-textarea>
 
+      <form [formGroup]="emailForm" (submit)="redefinirSenha()">
         <ion-item lines="none" class="campo-form">
           <ion-input
+            formControlName="email"
             type="email"
             placeholder="Email"
             inputmode="email"
           ></ion-input>
-          <ion-note slot="end" color="tertiary" >
+          <ion-note slot="end" color="tertiary" *ngIf="email.dirty && email.hasError('required')">
             Obrigatório
           </ion-note>
-          <ion-note slot="end" color="tertiary" >
+          <ion-note slot="end" color="tertiary" *ngIf="email.dirty && email.hasError('email')">
             Email Inválido
           </ion-note>
           <ion-icon name="mail" color="light" slot="end"> </ion-icon>
@@ -23,20 +25,24 @@
         <div class="separador-elems-login"></div>
 
         <ion-button
+          type="submit"
           expand="block"
           shape="round"
-          color="tertiary">
+          color="tertiary"
+          [disabled]="emailForm.invalid">
           Enviar
         </ion-button>
 
         <div class="separador-botoes"></div>
+      </form>
 
         <ion-button
           expand="block"
           fill="clear"
           shape="round"
           color="light"
-          >Retornar para tela de login
+          (click)="retornarTelaLogin()"
+          >- Retornar -
         </ion-button>
 
       </ion-col>
