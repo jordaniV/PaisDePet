@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { MenuController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 import { Router, NavigationEnd, RouterEvent } from '@angular/router';
 
 @Component({
@@ -8,22 +8,32 @@ import { Router, NavigationEnd, RouterEvent } from '@angular/router';
   templateUrl: './recuperar-senha.page.html',
   styleUrls: ['./recuperar-senha.page.scss']
 })
-export class RecuperarSenhaPage implements OnInit, OnDestroy {
-
+export class RecuperarSenhaPage implements OnInit {
   emailForm: FormGroup;
 
   constructor(
     private menuCtrl: MenuController,
-    private router: Router,
+    private navCtrl: NavController,
     private formBuilder: FormBuilder
-  ) { this.menuCtrl.enable(false); }
+  ) {
+    this.menuCtrl.enable(false);
+  }
 
   ngOnInit(): void {
     this.emailForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]]
     });
-    this.menuCtrl.enable(false);
     this.emailForm.reset();
+  }
+
+  /*
+  limpa o formulário
+  */
+  limpaFormulario() {
+    this.emailForm.setValue({
+      email: '',
+      senha: ''
+    });
   }
 
   /*
@@ -34,18 +44,15 @@ export class RecuperarSenhaPage implements OnInit, OnDestroy {
     return this.emailForm.get('email') as FormControl;
   }
 
-  ngOnDestroy(): void {
-    this.menuCtrl.enable(true); // quando o ciclo de vida da pagina acabar( sair da pagina de login) ele libera o menu novamente
-  }
-
   /*
   retornar para a tela de login
   */
   retornarTelaLogin() {
-    this.router.navigate(['signin']);
+    this.navCtrl.navigateRoot('/signin');
   }
 
   redefinirSenha() {
     console.log(this.emailForm.value);
+    this.limpaFormulario();
   }
 }

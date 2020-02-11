@@ -1,10 +1,10 @@
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AuthProvider } from 'src/app/core/services/auth.types';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { MenuController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 import { OverlayService } from 'src/app/core/services/overlay.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import * as firebase from 'firebase';
 
 @Component({
@@ -12,12 +12,16 @@ import * as firebase from 'firebase';
   templateUrl: './signin.page.html',
   styleUrls: ['./signin.page.scss']
 })
-export class SigninPage implements OnInit, OnDestroy {
+export class SigninPage implements OnInit {
+
   authForm: FormGroup;
   authProviders = AuthProvider;
 
   usuario: firebase.User;
 
+  /*
+  configs que parametrizam a alternância entre tela de login e cadastro
+  */
   configs = {
     isSignIn: true,
     action: 'Entrar',
@@ -28,28 +32,29 @@ export class SigninPage implements OnInit, OnDestroy {
   private nameControl = new FormControl('', [Validators.required, Validators.minLength(3)]);
 
   constructor(
-    private menuCtrl: MenuController,
+    private navCtrl: NavController,
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private overlayService: OverlayService,
-    private router: Router
-  ) { this.menuCtrl.enable(false); } // ao rodar a aplicação não vai aparecer o menu
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {  } // ao rodar a aplicação não vai aparecer o menu
 
   ngOnInit(): void {
-    this.menuCtrl.enable(false);
     this.authForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, Validators.minLength(6)]]
     });
-    this.authForm.reset();
   }
 
-  ionViewWillEnter() {
-    this.menuCtrl.enable(false);
-  }
-
-  ngOnDestroy(): void {
-    this.menuCtrl.enable(true); // quando o ciclo de vida da pagina acabar( sair da pagina de login) ele libera o menu novamente
+  /*
+  limpa o formulário
+  */
+  limpaFormulario() {
+    this.authForm.setValue({
+      email: '',
+      senha: ''
+    });
   }
 
   /*
@@ -86,7 +91,8 @@ export class SigninPage implements OnInit, OnDestroy {
       this.overlayService.toast({
         message: 'Usuário autenticado com sucesso.'
       });
-      this.router.navigate(['home']);
+      this.limpaFormulario();
+      this.navCtrl.navigateForward(this.activatedRoute.snapshot.queryParamMap.get('redirect') || '/home');
     } catch (e) {
       // chamado quando acontecer um erro
       console.log('Erro: ', e);
@@ -117,7 +123,7 @@ export class SigninPage implements OnInit, OnDestroy {
   somente para login via email
   */
   recuperaSenha() {
-    this.router.navigate(['recuperar-senha']);
+    this.navCtrl.navigateRoot('/recuperar-senha');
   }
 
   /*

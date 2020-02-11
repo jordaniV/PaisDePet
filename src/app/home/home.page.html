@@ -1,14 +1,12 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
+<ion-header no-border no-shadow>
+  <ion-toolbar color="translucent">
+    <pdp-menu-toggle slot="start" menu="main-menu"></pdp-menu-toggle>
     <ion-title>
-      {{ nome }}
+      Home
     </ion-title>
+    <pdp-logout-button slot="end" menu="main-menu"></pdp-logout-button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-button (click)="logout()">Sair</ion-button>
+<ion-content fullscreen>
 </ion-content>
