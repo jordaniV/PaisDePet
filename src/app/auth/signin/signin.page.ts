@@ -2,9 +2,10 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { AuthProvider } from 'src/app/core/services/auth.types';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { MenuController, NavController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import { OverlayService } from 'src/app/core/services/overlay.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import * as firebase from 'firebase';
 
 @Component({
@@ -16,6 +17,8 @@ export class SigninPage implements OnInit {
 
   authForm: FormGroup;
   authProviders = AuthProvider;
+
+  foto = '';
 
   usuario: firebase.User;
 
@@ -36,8 +39,8 @@ export class SigninPage implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private overlayService: OverlayService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private camera: Camera
   ) {  } // ao rodar a aplicação não vai aparecer o menu
 
   ngOnInit(): void {
@@ -143,5 +146,40 @@ export class SigninPage implements OnInit {
         }
       ]
     });
+  }
+
+  /*
+  metodos responsaveis por tirar foto de perfil
+  */
+  tiraFoto(): void {
+    this.foto = '';
+
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      allowEdit: false,
+      targetWidth: 100,
+      targetHeight: 100,
+      correctOrientation: true,
+      saveToPhotoAlbum: true,
+      sourceType: this.camera.PictureSourceType.CAMERA
+    };
+
+    this.camera.getPicture(options).then(
+        imageData => {
+          const base64image = 'data:image/jpeg;base64,' + imageData;
+          this.foto = base64image;
+        },
+        error => {
+          this.overlayService.alert({message: error});
+          console.error(error);
+        }
+      )
+      .catch(error => {
+        this.overlayService.alert({ message: error });
+        console.error(error);
+      });
   }
 }

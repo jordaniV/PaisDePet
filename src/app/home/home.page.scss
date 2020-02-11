@@ -1,4 +1,16 @@
 ion-toolbar {
-   --background: transparent;
-   --ion-color-base: transparent !important;
+  --background: transparent;
+  --ion-color-base: transparent !important;
+}
+
+img {
+  max-width: 300px;
+  max-height: 300px;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
 }

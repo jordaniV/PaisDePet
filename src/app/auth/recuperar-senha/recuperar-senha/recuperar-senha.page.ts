@@ -27,16 +27,6 @@ export class RecuperarSenhaPage implements OnInit {
   }
 
   /*
-  limpa o formulário
-  */
-  limpaFormulario() {
-    this.emailForm.setValue({
-      email: '',
-      senha: ''
-    });
-  }
-
-  /*
   metodo getter do formulario responsável por validar as mensagens
   de erro no ion-note
   */
@@ -53,6 +43,5 @@ export class RecuperarSenhaPage implements OnInit {
 
   redefinirSenha() {
     console.log(this.emailForm.value);
-    this.limpaFormulario();
   }
 }

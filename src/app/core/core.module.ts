@@ -5,6 +5,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -29,6 +30,7 @@ import { Facebook } from '@ionic-native/facebook/ngx';
     StatusBar,
     SplashScreen,
     Facebook,
+    Camera,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ]
 })

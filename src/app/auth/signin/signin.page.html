@@ -1,4 +1,4 @@
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" color="primary">
 
   <ion-grid>
     <ion-row class="ion-justify-content-center">
@@ -11,6 +11,9 @@
         <form [formGroup]="authForm" (submit)="signin(authProviders.Email)">
 
           <ng-container *ngIf="!configs.isSignIn">
+
+            <img src="{{ foto }}" />
+            <ion-button (click)="tiraFoto()">Tirar Foto</ion-button>
 
              <ion-item lines="none" class="campo-form">
             <ion-input
@@ -107,7 +110,8 @@
 <!-- =============== fim forms =================== -->
         <ion-button
             *ngIf="configs.isSignIn"
-            fill="clear" expand="block"
+            fill="clear"
+            expand="block"
             color="tertiary"
             (click)="signin(authProviders.Facebook)">
             <ion-icon
@@ -127,8 +131,6 @@
           color="light"
           (click)="recuperaSenha()"
           >Esqueci minha senha</ion-button>
-<!-- ================================== -->
-        <div *ngIf="!configs.isSignIn"></div>
 <!-- ================================== -->
         <ion-button
           class="btn-font-size"
