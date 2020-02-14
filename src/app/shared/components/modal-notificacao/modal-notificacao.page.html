@@ -1,0 +1,24 @@
+<ion-content class="ion-padding" color="primary">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-sm="8" size-md="6" size-lg="6" size-xl="6">
+
+      <h1 class="ion-text-center">
+        <ion-icon [name]="icone" color="secondary" class="icone-7em"></ion-icon>
+      </h1>
+
+      <ion-textarea class="ion-text-center" color="light">{{ txtPrincipal }}</ion-textarea>
+
+        <ion-button
+          class="btn-fechar"
+          expand="block"
+          shape="round"
+          color="tertiary"
+          (click)="retornarTelaLogin()">
+          {{ txtBotao }}
+        </ion-button>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

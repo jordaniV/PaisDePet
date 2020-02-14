@@ -13,15 +13,19 @@ const routes: Routes = [
   },
   {
     path: 'meus-pets',
-    loadChildren: () => import('./meus-pets/meus-pets.module').then( m => m.MeusPetsPageModule)
+    loadChildren: () => import('./meus-pets/meus-pets.module').then(m => m.MeusPetsPageModule)
   },
   {
     path: 'signin',
-    loadChildren: () => import('./auth/signin/signin.module').then( m => m.SigninPageModule)
+    loadChildren: () => import('./auth/signin/signin.module').then(m => m.SigninPageModule)
   },
   {
     path: 'recuperar-senha',
-    loadChildren: () => import('./auth/recuperar-senha/recuperar-senha/recuperar-senha.module').then( m => m.RecuperarSenhaPageModule)
+    loadChildren: () => import('./auth/recuperar-senha/recuperar-senha/recuperar-senha.module').then(m => m.RecuperarSenhaPageModule)
+  },
+  {
+    path: 'modal-notificacao',
+    loadChildren: () => import('./shared/components/modal-notificacao/modal-notificacao.module').then( m => m.ModalNotificacaoPageModule)
   }
 ];
 
