@@ -11,12 +11,12 @@
           <ng-container *ngIf="!configs.isSignIn">
 
             <ion-avatar>
-              <img src="{{ foto }}" />
+              <img src="../../../assets/img/cachorro.jpg"> <!-- {{ foto }} -->
             </ion-avatar>
 
-            <div class="btn-camera">
-              <ion-button (click)="tiraFoto()" color="tertiary">
-                <ion-icon name="camera" color="light" size="large"></ion-icon>
+            <div class="div-btn-camera">
+              <ion-button class="btn-camera" (click)="tiraFoto()" fill="clear">
+                <ion-icon class="icon-btn-camera" name="camera" slot="icon-only" color="light" size="large"></ion-icon>
               </ion-button>
             </div>
 

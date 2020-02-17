@@ -44,7 +44,6 @@ export class SigninPage implements OnInit {
   ) {} // ao rodar a aplicação não vai aparecer o menu
 
   ngOnInit(): void {
-    this.configs.isSignIn = true;
     this.authForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, Validators.minLength(6)]]
@@ -56,7 +55,7 @@ export class SigninPage implements OnInit {
   limpa o formulário
   */
   limpaFormulario() {
-    this.authForm.setValue({
+    this.authForm.patchValue({
       email: '',
       senha: ''
     });
@@ -92,16 +91,17 @@ export class SigninPage implements OnInit {
         user: this.authForm.value,
         provider
       });
-      /*if (!this.configs.isSignIn) {
+      if (this.configs.isSignIn) { // caso seja login
+        this.overlayService.toast({
+          message: 'Usuário autenticado com sucesso.'
+        });
+        this.limpaFormulario();
+        this.navCtrl.navigateForward(this.activatedRoute.snapshot.queryParamMap.get('redirect') || '/home');
+      } else { // caso seja cadastro novo
         this.preencheCamposParaModalNotificacoes();
-      }*/
-      this.overlayService.toast({
-        message: 'Usuário autenticado com sucesso.'
-      });
-      this.limpaFormulario();
-      this.navCtrl.navigateForward(
-        this.activatedRoute.snapshot.queryParamMap.get('redirect') || '/home'
-      );
+        this.limpaFormulario();
+        this.cadastrarNovaConta();
+      }
     } catch (e) {
       // chamado quando acontecer um erro
       console.log('Erro: ', e);
@@ -194,14 +194,15 @@ export class SigninPage implements OnInit {
   /*
   metodo que alimenta os parametros do modal de notificação
   */
-  /*async preencheCamposParaModalNotificacoes() {
+  async preencheCamposParaModalNotificacoes() {
     await this.overlayService.modal({
       component: ModalNotificacaoPage,
       componentProps: {
-        txtPrincipal: 'Usuário cadastrado com sucesso! Faça bom uso do seu aplicativo.',
+        txtPrincipal: 'Usuário cadastrado com sucesso!',
         txtBotao: 'Acessar Pais de Pet',
-        icone: 'checkmark-circle-outline'
+        icone: 'checkmark-circle-outline',
+        rota: '/signin'
       }
     });
-  }*/
+  }
 }

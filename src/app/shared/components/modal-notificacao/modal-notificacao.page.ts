@@ -10,6 +10,7 @@ export class ModalNotificacaoPage implements OnInit {
   txtPrincipal: string;
   txtBotao: string;
   icone: string;
+  rota: string;
 
   constructor(
     private navCtrl: NavController,
@@ -20,10 +21,11 @@ export class ModalNotificacaoPage implements OnInit {
     this.txtPrincipal;
     this.txtBotao;
     this.icone;
+    this.rota;
   }
 
   retornarTelaLogin() {
-    this.navCtrl.navigateRoot('/signin');
+    this.navCtrl.navigateRoot(this.rota);
     this.modalCtrl.dismiss();
   }
 }

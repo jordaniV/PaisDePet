@@ -10,7 +10,8 @@ import { ModalNotificacaoPageModule } from './shared/components/modal-notificaca
   declarations: [AppComponent],
   imports: [
     CoreModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ModalNotificacaoPageModule
   ],
   bootstrap: [AppComponent]
 })

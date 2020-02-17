@@ -64,7 +64,8 @@ export class RecuperarSenhaPage implements OnInit {
       componentProps: {
         txtPrincipal:  'Um email foi enviado para alteração da sua senha. Obrigado.',
         txtBotao: 'Retornar a página de login',
-        icone: 'checkmark-circle-outline'
+        icone: 'checkmark-circle-outline',
+        rota: '/signin'
       }
     });
   }

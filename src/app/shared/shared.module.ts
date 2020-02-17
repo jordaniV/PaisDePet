@@ -4,8 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { MenuToggleComponent } from './components/menu-toggle/menu-toggle.component';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
-import { ModalNotificacaoPage } from './components/modal-notificacao/modal-notificacao.page';
-import { ModalNotificacaoPageModule } from './components/modal-notificacao/modal-notificacao.module';
 
 // aqui ficam os modulos comuns para as diversas areas da aplicação
 

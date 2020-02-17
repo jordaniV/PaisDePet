@@ -20,7 +20,7 @@ import { Facebook } from '@ionic-native/facebook/ngx';
     AngularFirestoreModule.enablePersistence({
       synchronizeTabs: true
     }),
-    AngularFireAuthModule,
+    AngularFireAuthModule
   ],
   exports: [BrowserModule, IonicModule],
   providers: [

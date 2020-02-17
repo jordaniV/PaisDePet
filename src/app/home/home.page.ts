@@ -14,13 +14,12 @@ export class HomePage implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private route: Router,
-    private overlayService: OverlayService
   ) {}
 
   ngOnInit() {
     this.authService.getInfoUsuario().subscribe(user => {
-      this.nome = user.displayName;
+      user ? this.nome = user.displayName
+        : this.nome = '';
     });
   }
 }
