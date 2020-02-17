@@ -25,7 +25,11 @@ const routes: Routes = [
   },
   {
     path: 'modal-notificacao',
-    loadChildren: () => import('./shared/components/modal-notificacao/modal-notificacao.module').then( m => m.ModalNotificacaoPageModule)
+    loadChildren: () => import('./shared/pages/modal-notificacao/modal-notificacao.module').then( m => m.ModalNotificacaoPageModule)
+  },
+  {
+    path: '**',
+    loadChildren: () => import ('./erros/erros.module').then(m => m.ErrosModule)
   }
 ];
 

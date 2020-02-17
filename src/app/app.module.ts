@@ -3,7 +3,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { CoreModule } from './core/core.module';
-import { ModalNotificacaoPageModule } from './shared/components/modal-notificacao/modal-notificacao.module';
+import { ModalNotificacaoPageModule } from './shared/pages/modal-notificacao/modal-notificacao.module';
 
 
 @NgModule({

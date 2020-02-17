@@ -7,7 +7,7 @@ import { OverlayService } from 'src/app/core/services/overlay.service';
 import { ActivatedRoute } from '@angular/router';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import * as firebase from 'firebase';
-import { ModalNotificacaoPage } from 'src/app/shared/components/modal-notificacao/modal-notificacao.page';
+import { ModalNotificacaoPage } from 'src/app/shared/pages/modal-notificacao/modal-notificacao.page';
 
 @Component({
   selector: 'app-signin',
@@ -100,7 +100,7 @@ export class SigninPage implements OnInit {
       } else { // caso seja cadastro novo
         this.preencheCamposParaModalNotificacoes();
         this.limpaFormulario();
-        this.cadastrarNovaConta();
+        this.alternarLoginCadastro();
       }
     } catch (e) {
       // chamado quando acontecer um erro
@@ -117,7 +117,7 @@ export class SigninPage implements OnInit {
   /*
   Troco os nomes dos elementos de login para cadastro, e incluo o formControl do nome
   */
-  cadastrarNovaConta(): void {
+  alternarLoginCadastro(): void {
     this.configs.isSignIn = !this.configs.isSignIn;
     const { isSignIn } = this.configs;
     this.configs.action = isSignIn ? 'Entrar' : 'Cadastrar';

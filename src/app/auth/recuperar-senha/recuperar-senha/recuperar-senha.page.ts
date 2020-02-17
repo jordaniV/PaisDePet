@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { MenuController, NavController, ModalController } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { OverlayService } from 'src/app/core/services/overlay.service';
-import { ModalNotificacaoPage } from 'src/app/shared/components/modal-notificacao/modal-notificacao.page';
+import { ModalNotificacaoPage } from 'src/app/shared/pages/modal-notificacao/modal-notificacao.page';
 
 @Component({
   selector: 'app-recuperar-senha',
