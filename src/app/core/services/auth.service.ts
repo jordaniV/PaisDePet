@@ -5,9 +5,9 @@ import { auth } from 'firebase/app';
 import { User, AuthProvider, AuthOptions } from './auth.types';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Platform } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+import { PlataformaService } from './plataforma.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +18,8 @@ export class AuthService {
 
   constructor(
     private afAuth: AngularFireAuth,
-    private platform: Platform,
-    private facebook: Facebook
+    private facebook: Facebook,
+    private plataformaService: PlataformaService
   ) {
     /* recebe o estado da autenticação */
     this.statusDaAutenticacao$ = this.afAuth.authState;
@@ -102,7 +102,7 @@ export class AuthService {
 
     switch (provider) {
       case AuthProvider.Facebook: // referenciando o enum no auth.types.ts
-        if (!this.platform.is('desktop')) {
+        if (!this.plataformaService.ehBrowser()) {
           await this.facebook.login(['email']).then((result: FacebookLoginResponse) => {
             const fbCredential = firebase.auth.FacebookAuthProvider.credential(
               result.authResponse.accessToken
