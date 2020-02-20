@@ -2,21 +2,21 @@
   <ion-grid>
     <ion-row class="ion-justify-content-center">
       <ion-col size-sm="8" size-md="6" size-lg="6" size-xl="3">
-        <img *ngIf="configs.isSignIn" src="../assets/img/paisdepet-logo.png" (click)="segredo()" />
+        <img class="img-logo"*ngIf="configs.isSignIn" src="../assets/img/paisdepet-logo.png" (click)="segredo()" />
         <div *ngIf="configs.isSignIn" class="separador-img-login"></div>
 
         <!-- =============== início forms =================== -->
         <form [formGroup]="authForm" (submit)="signin(authProviders.Email)">
           <ng-container *ngIf="!configs.isSignIn">
             <ion-avatar>
-              <img class="img-profile" src="./assets/img/user.png" />
+              <img src="./assets/img/user.png" />
               <!-- {{ foto }} -->
             </ion-avatar>
 
             <div class="btn-camera">
             <ion-button
               fill="clear"
-              (click)="tiraFoto()">
+              (click)="selecionaDiretorioFoto($event)">
               <ion-icon
                 name="camera"
                 slot="icon-only"

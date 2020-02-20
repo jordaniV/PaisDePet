@@ -2,21 +2,22 @@ ion-input {
   --placeholder-color: #f4f5f8;
   --placeholder-opacity: 100%;
 }
+
 ion-avatar {
   margin: auto;
-}
-
-.img-profile {
-  width: 100px;
-  height: 100px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 25%;
+  max-width: 90px;
+  max-height: 90px;
+  width: auto;
+  height: auto;
   text-align: center;
 }
 
 .btn-camera {
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 5%;
+  //margin-top: 8%;
   text-align: center;
 }
 
@@ -42,7 +43,7 @@ ion-avatar {
 }
 
 
-img {
+.img-logo {
   max-width: 200px;
   max-height: 200px;
   width: auto;

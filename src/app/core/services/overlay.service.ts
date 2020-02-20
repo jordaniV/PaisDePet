@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { AlertController, LoadingController, ToastController, ModalController } from '@ionic/angular';
-import { AlertOptions, LoadingOptions, ToastOptions, ModalOptions } from '@ionic/core';
+import { AlertController, LoadingController, ToastController, ModalController, PopoverController } from '@ionic/angular';
+import { AlertOptions, LoadingOptions, ToastOptions, ModalOptions, PopoverOptions } from '@ionic/core';
 
 /*
 aqui consta os metodos de sobreposição, mensagens como alert, toast e loading, qualquer
@@ -17,7 +17,8 @@ export class OverlayService {
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private popoverCtrl: PopoverController
   ) { }
 
   async alert(options?: AlertOptions): Promise<HTMLIonAlertElement> {
@@ -54,5 +55,14 @@ export class OverlayService {
     });
     await modal.present();
     return modal;
+  }
+
+  async popover(options?: PopoverOptions): Promise<HTMLIonPopoverElement> {
+    const popover = await this.popoverCtrl.create({
+      keyboardClose: true,
+      ...options
+    });
+    await popover.present();
+    return popover;
   }
 }

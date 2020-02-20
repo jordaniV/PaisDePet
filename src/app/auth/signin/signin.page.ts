@@ -5,9 +5,9 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { NavController } from '@ionic/angular';
 import { OverlayService } from 'src/app/core/services/overlay.service';
 import { ActivatedRoute } from '@angular/router';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import * as firebase from 'firebase';
 import { ModalNotificacaoPage } from 'src/app/shared/pages/modal-notificacao/modal-notificacao.page';
+import { ListaPopoverPage } from 'src/app/shared/pages/lista-popover/lista-popover.page';
 
 @Component({
   selector: 'app-signin',
@@ -17,8 +17,6 @@ import { ModalNotificacaoPage } from 'src/app/shared/pages/modal-notificacao/mod
 export class SigninPage implements OnInit {
   authForm: FormGroup;
   authProviders = AuthProvider;
-
-  foto = '';
 
   usuario: firebase.User;
 
@@ -39,8 +37,7 @@ export class SigninPage implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private overlayService: OverlayService,
-    private activatedRoute: ActivatedRoute,
-    private camera: Camera
+    private activatedRoute: ActivatedRoute
   ) {} // ao rodar a aplicação não vai aparecer o menu
 
   ngOnInit(): void {
@@ -91,13 +88,17 @@ export class SigninPage implements OnInit {
         user: this.authForm.value,
         provider
       });
-      if (this.configs.isSignIn) { // caso seja login
+      if (this.configs.isSignIn) {
+        // caso seja login
         this.overlayService.toast({
           message: 'Usuário autenticado com sucesso.'
         });
         this.limpaFormulario();
-        this.navCtrl.navigateForward(this.activatedRoute.snapshot.queryParamMap.get('redirect') || '/home');
-      } else { // caso seja cadastro novo
+        this.navCtrl.navigateForward(
+          this.activatedRoute.snapshot.queryParamMap.get('redirect') || '/home'
+        );
+      } else {
+        // caso seja cadastro novo
         this.preencheCamposParaModalNotificacoes();
         this.limpaFormulario();
         this.alternarLoginCadastro();
@@ -155,40 +156,14 @@ export class SigninPage implements OnInit {
   }
 
   /*
-  metodos responsaveis por tirar foto de perfil
+  escolher se a foto virá direto da câmera, tirado foto na hora, ou se
+  selecionará a foto da galeria
   */
-  tiraFoto(): void {
-    this.foto = '';
-
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      allowEdit: false,
-      targetWidth: 100,
-      targetHeight: 100,
-      correctOrientation: true,
-      saveToPhotoAlbum: true,
-      sourceType: this.camera.PictureSourceType.CAMERA
-    };
-
-    this.camera
-      .getPicture(options)
-      .then(
-        imageData => {
-          const base64image = 'data:image/jpeg;base64,' + imageData;
-          this.foto = base64image;
-        },
-        error => {
-          this.overlayService.alert({ message: error });
-          console.error(error);
-        }
-      )
-      .catch(error => {
-        this.overlayService.alert({ message: error });
-        console.error(error);
-      });
+  async selecionaDiretorioFoto(ev: Event) {
+    await this.overlayService.popover({
+      component: ListaPopoverPage,
+      event: ev
+    });
   }
 
   /*
