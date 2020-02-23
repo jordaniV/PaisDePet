@@ -8,23 +8,13 @@
         <!-- =============== início forms =================== -->
         <form [formGroup]="authForm" (submit)="signin(authProviders.Email)">
           <ng-container *ngIf="!configs.isSignIn">
+
             <ion-avatar>
               <img src="./assets/img/user.png" />
               <!-- {{ foto }} -->
             </ion-avatar>
 
-            <div class="btn-camera">
-            <ion-button
-              fill="clear"
-              (click)="selecionaDiretorioFoto($event)">
-              <ion-icon
-                name="camera"
-                slot="icon-only"
-                color="light"
-                size="large">
-              </ion-icon>
-            </ion-button>
-            </div>
+            <pdp-camera-button></pdp-camera-button>
 
             <ion-item lines="none" class="campo-form">
               <ion-input formControlName="nome" type="text" placeholder="Nome"></ion-input>
@@ -115,7 +105,7 @@
           expand="block"
           fill="clear"
           color="light"
-          (click)="alternarLoginCadastro()"
+          (click)="alternarEntreLoginCadastro()"
           >- {{ configs.actionChange }} -
         </ion-button>
         <!-- ================================== -->

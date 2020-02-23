@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as firebase from 'firebase';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
-import { PlataformaService } from './plataforma.service';
+import { PlataformaService } from '../../shared/services/plataforma.service';
 
 @Injectable({
   providedIn: 'root'

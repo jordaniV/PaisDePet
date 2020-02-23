@@ -3,11 +3,10 @@ import { AuthProvider } from 'src/app/core/services/auth.types';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NavController } from '@ionic/angular';
-import { OverlayService } from 'src/app/core/services/overlay.service';
+import { OverlayService } from 'src/app/shared/services/overlay.service';
 import { ActivatedRoute } from '@angular/router';
 import * as firebase from 'firebase';
 import { ModalNotificacaoPage } from 'src/app/shared/pages/modal-notificacao/modal-notificacao.page';
-import { ListaPopoverPage } from 'src/app/shared/pages/lista-popover/lista-popover.page';
 
 @Component({
   selector: 'app-signin',
@@ -17,7 +16,7 @@ import { ListaPopoverPage } from 'src/app/shared/pages/lista-popover/lista-popov
 export class SigninPage implements OnInit {
   authForm: FormGroup;
   authProviders = AuthProvider;
-
+  foto: any = '';
   usuario: firebase.User;
 
   /*
@@ -101,7 +100,7 @@ export class SigninPage implements OnInit {
         // caso seja cadastro novo
         this.preencheCamposParaModalNotificacoes();
         this.limpaFormulario();
-        this.alternarLoginCadastro();
+        this.alternarEntreLoginCadastro();
       }
     } catch (e) {
       // chamado quando acontecer um erro
@@ -118,7 +117,7 @@ export class SigninPage implements OnInit {
   /*
   Troco os nomes dos elementos de login para cadastro, e incluo o formControl do nome
   */
-  alternarLoginCadastro(): void {
+  alternarEntreLoginCadastro(): void {
     this.configs.isSignIn = !this.configs.isSignIn;
     const { isSignIn } = this.configs;
     this.configs.action = isSignIn ? 'Entrar' : 'Cadastrar';
@@ -152,17 +151,6 @@ export class SigninPage implements OnInit {
           }
         }
       ]
-    });
-  }
-
-  /*
-  escolher se a foto virá direto da câmera, tirado foto na hora, ou se
-  selecionará a foto da galeria
-  */
-  async selecionaDiretorioFoto(ev: Event) {
-    await this.overlayService.popover({
-      component: ListaPopoverPage,
-      event: ev
     });
   }
 

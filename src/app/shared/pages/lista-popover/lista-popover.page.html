@@ -1,9 +1,9 @@
 <ion-list lines="none">
-  <ion-item *ngIf="!ehBrowser" button detail="false" (click)="selecionaFoto(this.camera.PictureSourceType.CAMERA)">
+  <ion-item *ngIf="!ehBrowser" button detail="false" (click)="selecionaFotoPelaCamera(this.camera.PictureSourceType.CAMERA)">
     <ion-icon name="camera" color="primary" slot="start"></ion-icon>
     Camera
   </ion-item>
-  <ion-item button detail="false" (click)="selecionaFoto(this.camera.PictureSourceType.PHOTOLIBRARY)">
+  <ion-item button detail="false" (click)="selecionaMenuArquivo()">
     <ion-icon name="folder-open" color="primary" slot="start"></ion-icon>
     Arquivo
   </ion-item>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MenuController, NavController, ModalController } from '@ionic/angular';
 import * as firebase from 'firebase';
-import { OverlayService } from 'src/app/core/services/overlay.service';
+import { OverlayService } from 'src/app/shared/services/overlay.service';
 import { ModalNotificacaoPage } from 'src/app/shared/pages/modal-notificacao/modal-notificacao.page';
 
 @Component({

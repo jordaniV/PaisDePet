@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { NavController, MenuController } from '@ionic/angular';
-import { OverlayService } from 'src/app/core/services/overlay.service';
+import { OverlayService } from 'src/app/shared/services/overlay.service';
 
 @Component({
   selector: 'pdp-logout-button',
@@ -10,7 +10,7 @@ import { OverlayService } from 'src/app/core/services/overlay.service';
 })
 export class LogoutButtonComponent implements OnInit {
 
-  @Input() menuId: string;
+  @Input() menuId: string; // serve para pegar o id do menu toggle
 
   constructor(
     private authService: AuthService,
@@ -20,6 +20,8 @@ export class LogoutButtonComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
+    /* verifica se o menu toggle com o id especifico (pode haver mais de um menu)
+    esta desabilitado, se sim, habilita o mesmo*/
     if (!await this.menuCtrl.isEnabled(this.menuId)) {
       this.menuCtrl.enable(true, this.menuId);
     }

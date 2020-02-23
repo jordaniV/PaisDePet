@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from '../core/services/auth.service';
-import { OverlayService } from '../core/services/overlay.service';
 
 @Component({
   selector: 'app-home',

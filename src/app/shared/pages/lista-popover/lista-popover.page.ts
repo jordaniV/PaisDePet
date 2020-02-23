@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PlataformaService } from 'src/app/core/services/plataforma.service';
+import { PlataformaService } from 'src/app/shared/services/plataforma.service';
 import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
 import { PopoverController } from '@ionic/angular';
-import { OverlayService } from 'src/app/core/services/overlay.service';
+import { OverlayService } from 'src/app/shared/services/overlay.service';
 
 @Component({
   selector: 'app-lista-popover',
@@ -10,23 +10,40 @@ import { OverlayService } from 'src/app/core/services/overlay.service';
   styleUrls: ['./lista-popover.page.scss']
 })
 export class ListaPopoverPage implements OnInit {
-  ehBrowser = false;
+  ehBrowser = false; // condiciona a plataforma e se vai ter a opção de camera ou não habilitada ao usuário
   foto = '';
   constructor(
     private plataformaService: PlataformaService,
     private overlayService: OverlayService,
     private popoverCtrl: PopoverController,
-    private camera: Camera) {}
+    private camera: Camera
+  ) {}
 
   ngOnInit() {
     this.ehBrowser = this.plataformaService.ehBrowser();
   }
 
   /*
-  seleciona a foto para carregar no app. Verifica se foto vem de diretório
-  ou direto da câmera
+  seleciona opção de foto salva em diretório. Aqui é verificado se a opção de arquivo veio de uma plataforma browser ou mobile.
+  dependendo da opção ele chama o metodo específico
   */
-  selecionaFoto(caminho: PictureSourceType): void {
+  selecionaMenuArquivo() {
+    this.plataformaService.ehBrowser()
+      ? this.selecionaFotoPeloBrowser()
+      : this.selecionaFotoPelaCamera(this.camera.PictureSourceType.PHOTOLIBRARY);
+  }
+
+  /*
+  seleciona pela janela de arquivos do pc para carregamento de fotos
+  */
+  selecionaFotoPeloBrowser() {
+    this.overlayService.alert({ message: 'É um browser!' });
+  }
+
+  /*
+  seleciona a opção de foto pela camera
+  */
+  selecionaFotoPelaCamera(tipoCaminho: PictureSourceType) {
     this.foto = '';
 
     const options: CameraOptions = {
@@ -39,7 +56,7 @@ export class ListaPopoverPage implements OnInit {
       targetHeight: 100,
       correctOrientation: true,
       saveToPhotoAlbum: true,
-      sourceType: caminho
+      sourceType: tipoCaminho
     };
 
     this.camera
