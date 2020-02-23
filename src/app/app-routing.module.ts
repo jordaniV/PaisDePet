@@ -30,10 +30,6 @@ const routes: Routes = [
   {
     path: '**',
     loadChildren: () => import ('./erros/erros.module').then(m => m.ErrosModule)
-  },
-  {
-    path: 'lista-popover',
-    loadChildren: () => import('./shared/pages/lista-popover/lista-popover.module').then( m => m.ListaPopoverPageModule)
   }
 ];
 

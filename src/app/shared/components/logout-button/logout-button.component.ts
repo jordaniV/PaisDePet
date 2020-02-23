@@ -14,13 +14,13 @@ export class LogoutButtonComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private overlayService: OverlayService,
     private menuCtrl: MenuController,
-    private navCtrl: NavController,
-    private overlayService: OverlayService
+    private navCtrl: NavController
   ) {}
 
   async ngOnInit(): Promise<void> {
-    /* verifica se o menu toggle com o id especifico (pode haver mais de um menu)
+    /* verifica se o menu toggle com o id especifico (caso tenha mais de um menu)
     esta desabilitado, se sim, habilita o mesmo*/
     if (!await this.menuCtrl.isEnabled(this.menuId)) {
       this.menuCtrl.enable(true, this.menuId);

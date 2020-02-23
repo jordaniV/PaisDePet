@@ -8,6 +8,7 @@ export class PlataformaService {
 
   constructor(private platform: Platform) { }
 
+  /* verifica se a plataforma é desktop */
   ehBrowser() {
     return this.platform.is('desktop');
   }

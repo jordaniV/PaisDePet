@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { MenuController, NavController, ModalController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { OverlayService } from 'src/app/shared/services/overlay.service';
 import { ModalNotificacaoPage } from 'src/app/shared/pages/modal-notificacao/modal-notificacao.page';
@@ -16,8 +16,8 @@ export class RecuperarSenhaPage implements OnInit {
   constructor(
     private menuCtrl: MenuController,
     private navCtrl: NavController,
-    private formBuilder: FormBuilder,
-    private overlayService: OverlayService
+    private overlayService: OverlayService,
+    private formBuilder: FormBuilder
   ) {
     this.menuCtrl.enable(false);
   }
@@ -40,7 +40,7 @@ export class RecuperarSenhaPage implements OnInit {
   /*
   retornar para a tela de login
   */
-  retornarTelaLogin() {
+  retornarParaTelaDeLogin() {
     this.limpaFormulario();
     this.navCtrl.navigateRoot('/signin');
   }

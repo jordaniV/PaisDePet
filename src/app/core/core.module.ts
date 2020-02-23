@@ -18,8 +18,8 @@ import { Facebook } from '@ionic-native/facebook/ngx';
   imports: [
     IonicModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule.enablePersistence({
-      synchronizeTabs: true
+    AngularFirestoreModule.enablePersistence({ /* habilita a persistencia do firebase */
+      synchronizeTabs: true /* caso tenha mais de uma aba no browser, por exemplo, ele persiste as informações em todas as abas */
     }),
     AngularFireAuthModule
   ],

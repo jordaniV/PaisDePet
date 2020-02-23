@@ -16,7 +16,7 @@ import { ModalNotificacaoPage } from 'src/app/shared/pages/modal-notificacao/mod
 export class SigninPage implements OnInit {
   authForm: FormGroup;
   authProviders = AuthProvider;
-  foto: any = '';
+  foto = '';
   usuario: firebase.User;
 
   /*
@@ -28,16 +28,18 @@ export class SigninPage implements OnInit {
     actionChange: 'Nova Conta'
   };
 
-  // form name atribuido quando queremos criar uma nova conta
+  /* form name atribuido quando queremos criar uma nova conta */
   private nameControl = new FormControl('', [Validators.required, Validators.minLength(3)]);
 
   constructor(
-    private navCtrl: NavController,
     private formBuilder: FormBuilder,
+    private activatedRoute: ActivatedRoute,
+    private navCtrl: NavController,
     private authService: AuthService,
-    private overlayService: OverlayService,
-    private activatedRoute: ActivatedRoute
-  ) {} // ao rodar a aplicação não vai aparecer o menu
+    private overlayService: OverlayService
+  ) {
+    this.foto = window.localStorage.getItem('caminhoFotoUsuario'); /* carrega a foto que esta armazenada no storage */
+  } /* ao rodar a aplicação não vai aparecer o menu */
 
   ngOnInit(): void {
     this.authForm = this.formBuilder.group({
@@ -81,14 +83,14 @@ export class SigninPage implements OnInit {
   async signin(provider: AuthProvider): Promise<void> {
     const loading = await this.overlayService.loading();
     try {
-      // executado caso nao tenha nenhum erro
+      /* executado caso nao tenha nenhum erro */
       const credencial = await this.authService.autenticacao({
         isSignIn: this.configs.isSignIn,
         user: this.authForm.value,
         provider
       });
       if (this.configs.isSignIn) {
-        // caso seja login
+        /* caso seja login */
         this.overlayService.toast({
           message: 'Usuário autenticado com sucesso.'
         });
@@ -97,19 +99,18 @@ export class SigninPage implements OnInit {
           this.activatedRoute.snapshot.queryParamMap.get('redirect') || '/home'
         );
       } else {
-        // caso seja cadastro novo
         this.preencheCamposParaModalNotificacoes();
         this.limpaFormulario();
         this.alternarEntreLoginCadastro();
       }
     } catch (e) {
-      // chamado quando acontecer um erro
+      /* chamado quando acontecer um erro */
       console.log('Erro: ', e);
       await this.overlayService.toast({
         message: e.message
       });
     } finally {
-      // sempre é executado, caso tenha sucesso ou não
+      /* sempre é executado, caso tenha sucesso ou não */
       loading.dismiss();
     }
   }

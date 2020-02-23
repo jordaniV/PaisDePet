@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OverlayService } from 'src/app/shared/services/overlay.service';
-import { ListaPopoverPage } from '../../pages/lista-popover/lista-popover.page';
+import { PlataformaService } from '../../services/plataforma.service';
+import { CameraService } from '../../services/camera.service';
+import { Camera, PictureSourceType } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'pdp-camera-button',
@@ -8,18 +10,42 @@ import { ListaPopoverPage } from '../../pages/lista-popover/lista-popover.page';
   styleUrls: ['./camera-button.component.scss']
 })
 export class CameraButtonComponent implements OnInit {
-  constructor(private overlayService: OverlayService) {}
+  ehBrowser = false; /* condiciona a plataforma e se vai ter a opção de camera ou não habilitada ao usuário */
 
-  ngOnInit() {}
+  constructor(
+    private cameraService: CameraService,
+    private plataformaService: PlataformaService,
+    private overlayService: OverlayService,
+    private camera: Camera
+  ) {}
+
+  ngOnInit() {
+    this.ehBrowser = this.plataformaService.ehBrowser();
+  }
 
   /*
-  escolher se a foto virá direto da câmera, tirado foto na hora, ou se
-  selecionará a foto da galeria
+  seleciona opção de foto salva em diretório. Aqui é verificado se a opção de arquivo veio de uma plataforma browser ou mobile.
+  dependendo da opção ele chama o metodo específico
   */
-  async selecionaDiretorioFoto(ev: Event) {
-    await this.overlayService.popover({
-      component: ListaPopoverPage,
-      event: ev
+  selecionaOpcaoArquivo() {
+    this.plataformaService.ehBrowser()
+      ? this.selecionaFotoPeloBrowser()
+      : this.selecionaFotoPeloDispositivoMobile(this.camera.PictureSourceType.PHOTOLIBRARY);
+  }
+
+  /*
+  seleciona pela janela de arquivos do pc para carregamento de fotos
+  */
+  selecionaFotoPeloBrowser() {
+    this.overlayService.alert({ message: 'É um browser!' });
+  }
+
+  /*
+  seleciona a opção de foto através de um dispositivo mobile
+  */
+  async selecionaFotoPeloDispositivoMobile(tipoCaminho: PictureSourceType) {
+    await this.cameraService.selecionaFotoPeloDispositivoMobile(tipoCaminho).then((foto: string) => {
+      window.localStorage.setItem('caminhoFotoUsuario', foto);
     });
   }
 }

@@ -15,6 +15,7 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit() {
+    /* verifica se tem algum usuário logado, se tiver disponibiliza as informações do mesmo */
     this.authService.getInfoUsuario().subscribe(user => {
       user ? this.nome = user.displayName
         : this.nome = '';

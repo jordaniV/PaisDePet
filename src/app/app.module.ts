@@ -4,17 +4,15 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { CoreModule } from './core/core.module';
 import { ModalNotificacaoPageModule } from './shared/pages/modal-notificacao/modal-notificacao.module';
-import { ListaPopoverPageModule } from './shared/pages/lista-popover/lista-popover.module';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [ AppComponent ],
   imports: [
     CoreModule,
     AppRoutingModule,
-    ModalNotificacaoPageModule,
-    ListaPopoverPageModule
+    ModalNotificacaoPageModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule {}

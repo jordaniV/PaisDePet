@@ -1,5 +1,10 @@
 <div class="btn-camera">
-  <ion-button fill="clear" (click)="selecionaDiretorioFoto($event)">
-    <ion-icon name="camera" slot="icon-only" color="light" size="large"></ion-icon>
-  </ion-button>
+  <ion-item lines="none" detail="false" class="campo-form">
+    <ion-button *ngIf="!ehBrowser" fill="clear" slot="start" (click)="selecionaFotoPeloDispositivoMobile(this.camera.PictureSourceType.CAMERA)">
+      <ion-icon name="camera" slot="icon-only" color="light" size="large"></ion-icon>
+    </ion-button>
+    <ion-button fill="clear" slot="end" (click)="selecionaOpcaoArquivo()">
+      <ion-icon name="folder-open" slot="icon-only" color="light" size="large"></ion-icon>
+    </ion-button>
+  </ion-item>
 </div>

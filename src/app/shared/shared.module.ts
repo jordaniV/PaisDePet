@@ -6,18 +6,21 @@ import { MenuToggleComponent } from './components/menu-toggle/menu-toggle.compon
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 import { CameraButtonComponent } from './components/camera-button/camera-button.component';
 
-// aqui ficam os modulos comuns para as diversas areas da aplicação
+/* aqui ficam os modulos, components e etc comuns para as diversas areas da aplicação */
 
 @NgModule({
   declarations: [
     MenuToggleComponent,
     LogoutButtonComponent,
-    CameraButtonComponent],
-  imports: [IonicModule],
+    CameraButtonComponent
+  ],
+  imports: [
+    IonicModule,
+    CommonModule],
   exports: [
+    IonicModule,
     CommonModule,
     ReactiveFormsModule,
-    IonicModule,
     MenuToggleComponent,
     LogoutButtonComponent,
     CameraButtonComponent

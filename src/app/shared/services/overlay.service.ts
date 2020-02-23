@@ -4,7 +4,7 @@ import { AlertController, LoadingController, ToastController, ModalController, P
 import { AlertOptions, LoadingOptions, ToastOptions, ModalOptions, PopoverOptions } from '@ionic/core';
 
 /*
-aqui consta os metodos de sobreposição, mensagens como alert, toast e loading, qualquer
+aqui consta os metodos de sobreposição, mensagens como alert, toast, loading, modal e popover. Qualquer
 outro metodo de apresentação de mensagens deve ser incluso nesta classe
 */
 
@@ -16,9 +16,9 @@ export class OverlayService {
   constructor(
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private toastCtrl: ToastController,
     private modalCtrl: ModalController,
-    private popoverCtrl: PopoverController
+    private popoverCtrl: PopoverController,
+    private toastCtrl: ToastController
   ) { }
 
   async alert(options?: AlertOptions): Promise<HTMLIonAlertElement> {

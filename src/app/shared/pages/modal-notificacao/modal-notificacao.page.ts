@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavParams, NavController, ModalController } from '@ionic/angular';
+import { NavController, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-modal-notificacao',
@@ -7,14 +7,15 @@ import { NavParams, NavController, ModalController } from '@ionic/angular';
   styleUrls: ['./modal-notificacao.page.scss']
 })
 export class ModalNotificacaoPage implements OnInit {
+
   txtPrincipal: string;
   txtBotao: string;
   icone: string;
   rota: string;
 
   constructor(
-    private navCtrl: NavController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private navCtrl: NavController
   ) {}
 
   ngOnInit() {
@@ -24,7 +25,7 @@ export class ModalNotificacaoPage implements OnInit {
     this.rota;
   }
 
-  retornarTelaLogin() {
+  retornarParaTelaDeLogin() {
     this.navCtrl.navigateRoot(this.rota);
     this.modalCtrl.dismiss();
   }

@@ -27,7 +27,7 @@ export class AuthService {
 
   /*
   indica se o usuario esta autenticado ou não.
-  Pega o status da autenticação, faz um pipe nela e com um map pegaa propriedade user.
+  Pega o status da autenticação, faz um pipe nela e com um map pega propriedade user.
   caso user seja nulo então não esta autenticado e por consequencia retornara false
   caso contrario retorna true
   */
@@ -72,8 +72,8 @@ export class AuthService {
   /*
   efetuar o login no sistema com email e senha
   */
-  private loginComEmailESenha({ email, senha }: User): Promise<auth.UserCredential> {
-    return this.afAuth.auth.signInWithEmailAndPassword(email, senha);
+  private async loginComEmailESenha({ email, senha }: User): Promise<auth.UserCredential> {
+    return await this.afAuth.auth.signInWithEmailAndPassword(email, senha);
   }
 
   /*
@@ -82,15 +82,14 @@ export class AuthService {
   retornam do createUser... e chamamos o metodo user.updateProfile para adicionarmos
   novos dados como o nome e uma url de foto.
   */
-  private cadastrarComEmailESenha({ email, senha, nome }: User): Promise<auth.UserCredential> {
-    return this.afAuth.auth.createUserWithEmailAndPassword(email, senha).then(credencials =>
-      credencials.user
-        .updateProfile({
-          displayName: nome,
-          photoURL: null
-        })
-        .then(() => credencials)
-    );
+  private async cadastrarComEmailESenha({ email, senha, nome }: User): Promise<auth.UserCredential> {
+    const credencials = await this.afAuth.auth.createUserWithEmailAndPassword(email, senha);
+    await credencials.user
+      .updateProfile({
+        displayName: nome,
+        photoURL: null
+      });
+    return credencials;
   }
 
   /*
@@ -101,13 +100,13 @@ export class AuthService {
   private async loginComPopup(provider: AuthProvider): Promise<auth.UserCredential> {
 
     switch (provider) {
-      case AuthProvider.Facebook: // referenciando o enum no auth.types.ts
+      case AuthProvider.Facebook: /* referenciando o enum no auth.types.ts */
         if (!this.plataformaService.ehBrowser()) {
           await this.facebook.login(['email']).then((result: FacebookLoginResponse) => {
             const fbCredential = firebase.auth.FacebookAuthProvider.credential(
               result.authResponse.accessToken
             );
-            // firebase.auth().signInWithCredential(fbCredential);
+            /* firebase.auth().signInWithCredential(fbCredential); */
             return this.afAuth.auth.signInWithCredential(fbCredential);
           });
         } else {
