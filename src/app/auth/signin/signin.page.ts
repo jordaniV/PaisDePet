@@ -37,7 +37,7 @@ export class SigninPage implements OnInit {
     private navCtrl: NavController,
     private authService: AuthService,
     private overlayService: OverlayService
-  ) { } /* ao rodar a aplicação não vai aparecer o menu */
+  ) {} /* ao rodar a aplicação não vai aparecer o menu */
 
   ngOnInit(): void {
     this.authForm = this.formBuilder.group({

@@ -2,6 +2,7 @@
   <ion-grid>
     <ion-row class="ion-justify-content-center">
       <ion-col size-sm="8" size-md="6" size-lg="6" size-xl="3">
+
         <img class="img-logo"*ngIf="configs.isSignIn" src="../assets/img/paisdepet-logo.png" (click)="segredo()" />
         <div *ngIf="configs.isSignIn" class="separador-img-login"></div>
 
@@ -9,10 +10,14 @@
         <form [formGroup]="authForm" (submit)="signin(authProviders.Email)">
           <ng-container *ngIf="!configs.isSignIn">
 
-            <ion-avatar>
-              <ion-img src="{{ foto }}"></ion-img>
-              <!-- ./assets/img/user.png {{ foto }} -->
+            <ion-avatar *ngIf="foto != ''; else fotoDefault">
+              <ion-img src="{{ foto }}" alt="usuario-default"></ion-img>
+              <!-- ./assets/img/user-default.png {{ foto }} -->
             </ion-avatar>
+
+            <ng-template #fotoDefault>
+              <ion-img src="./assets/img/user-default.png" alt="usuario-default"></ion-img>
+            </ng-template>
 
             <pdp-camera-button></pdp-camera-button>
 

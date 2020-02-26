@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OverlayService } from 'src/app/shared/services/overlay.service';
 import { PlataformaService } from '../../services/plataforma.service';
 import { CameraService } from '../../services/camera.service';
-import { Camera, PictureSourceType } from '@ionic-native/camera/ngx';
+import { PictureSourceType } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'pdp-camera-button',
@@ -15,8 +15,7 @@ export class CameraButtonComponent implements OnInit {
   constructor(
     private cameraService: CameraService,
     private plataformaService: PlataformaService,
-    private overlayService: OverlayService,
-    private camera: Camera
+    private overlayService: OverlayService
   ) {}
 
   ngOnInit() {
