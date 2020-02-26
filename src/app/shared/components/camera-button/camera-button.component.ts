@@ -26,26 +26,28 @@ export class CameraButtonComponent implements OnInit {
   /*
   seleciona opção de foto salva em diretório. Aqui é verificado se a opção de arquivo veio de uma plataforma browser ou mobile.
   dependendo da opção ele chama o metodo específico
-  */
+
   selecionaOpcaoArquivo() {
     this.plataformaService.ehBrowser()
       ? this.selecionaFotoPeloBrowser()
       : this.selecionaFotoPeloDispositivoMobile(this.camera.PictureSourceType.PHOTOLIBRARY);
-  }
+  } */
 
   /*
   seleciona pela janela de arquivos do pc para carregamento de fotos
   */
-  selecionaFotoPeloBrowser() {
+  selecionaImagemPeloBrowser() {
     this.overlayService.alert({ message: 'É um browser!' });
   }
 
   /*
   seleciona a opção de foto através de um dispositivo mobile
   */
-  async selecionaFotoPeloDispositivoMobile(tipoCaminho: PictureSourceType) {
-    await this.cameraService.selecionaFotoPeloDispositivoMobile(tipoCaminho).then((foto: string) => {
-      window.localStorage.setItem('caminhoFotoUsuario', foto);
-    });
+  async selecionaImagemPeloDispositivoMobile(tipoCaminho: PictureSourceType) {
+    await this.cameraService
+      .selecionaImagemPeloDispositivoMobile(tipoCaminho)
+      .then((foto: string) => {
+        /* window.localStorage.setItem('caminhoFotoUsuario', foto); */
+      });
   }
 }

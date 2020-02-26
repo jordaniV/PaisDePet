@@ -1,9 +1,15 @@
 <div class="btn-camera">
   <ion-item lines="none" detail="false" class="campo-form">
-    <ion-button *ngIf="!ehBrowser" fill="clear" slot="start" (click)="selecionaFotoPeloDispositivoMobile(this.camera.PictureSourceType.CAMERA)">
+    <ion-button *ngIf="!ehBrowser" fill="clear" slot="start" (click)="selecionaImagemPeloDispositivoMobile(this.camera.PictureSourceType.CAMERA)">
       <ion-icon name="camera" slot="icon-only" color="light" size="large"></ion-icon>
     </ion-button>
-    <ion-button fill="clear" slot="end" (click)="selecionaOpcaoArquivo()">
+    <!-- codigo para teste -->
+    <input *ngIf="ehBrowser" type="file" accept="image/*" id="input-file">
+    <label *ngIf="ehBrowser" class="input-file-label" slot="end" for="input-file" (click)="selecionaImagemPeloBrowser()">
+      <ion-icon name="folder-open" slot="icon-only" color="light" size="large"></ion-icon>
+    </label>
+    <!-- ================= -->
+    <ion-button *ngIf="!ehBrowser" fill="clear" slot="end" (click)="selecionaImagemPeloDispositivoMobile(this.camera.PictureSourceType.PHOTOLIBRARY)">
       <ion-icon name="folder-open" slot="icon-only" color="light" size="large"></ion-icon>
     </ion-button>
   </ion-item>

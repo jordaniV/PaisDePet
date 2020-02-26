@@ -20,7 +20,7 @@ export class CameraService {
   Se o caminho será pela camera ou foto armazenada no celular
   vai depender do para,etro passado atraves de tipoCaminho
   */
-  async selecionaFotoPeloDispositivoMobile(tipoCaminho: PictureSourceType) {
+  async selecionaImagemPeloDispositivoMobile(tipoCaminho: PictureSourceType) {
     this.foto = '';
 
     const options: CameraOptions = {
@@ -41,7 +41,8 @@ export class CameraService {
         const imageData = await this.camera.getPicture(options);
         const base64image = 'data:image/jpeg;base64,' + imageData;
         this.popoverCtrl.dismiss();
-        return this.foto = base64image;
+        /* retorno da foto */
+        return (this.foto = base64image);
       } catch (error) {
         this.overlayService.alert({ message: error });
         this.popoverCtrl.dismiss();

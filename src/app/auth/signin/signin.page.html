@@ -10,8 +10,8 @@
           <ng-container *ngIf="!configs.isSignIn">
 
             <ion-avatar>
-              <img src="{{ foto }}" />
-              <!-- ./assets/img/user.png -->
+              <ion-img src="{{ foto }}"></ion-img>
+              <!-- ./assets/img/user.png {{ foto }} -->
             </ion-avatar>
 
             <pdp-camera-button></pdp-camera-button>
@@ -24,8 +24,7 @@
               <ion-note
                 slot="end"
                 color="tertiary"
-                *ngIf="nome.dirty && nome.hasError('minlength')"
-              >
+                *ngIf="nome.dirty && nome.hasError('minlength')">
                 Min 3 caracteres
               </ion-note>
               <ion-icon name="person" color="light" slot="end"> </ion-icon>

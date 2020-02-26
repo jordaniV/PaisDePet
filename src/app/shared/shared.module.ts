@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { MenuToggleComponent } from './components/menu-toggle/menu-toggle.component';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 import { CameraButtonComponent } from './components/camera-button/camera-button.component';
+import { ProfileButtonComponent } from './components/profile-button/profile-button.component';
 
 /* aqui ficam os modulos, components e etc comuns para as diversas areas da aplicação */
 
@@ -12,7 +13,8 @@ import { CameraButtonComponent } from './components/camera-button/camera-button.
   declarations: [
     MenuToggleComponent,
     LogoutButtonComponent,
-    CameraButtonComponent
+    CameraButtonComponent,
+    ProfileButtonComponent
   ],
   imports: [
     IonicModule,
@@ -23,7 +25,8 @@ import { CameraButtonComponent } from './components/camera-button/camera-button.
     ReactiveFormsModule,
     MenuToggleComponent,
     LogoutButtonComponent,
-    CameraButtonComponent
+    CameraButtonComponent,
+    ProfileButtonComponent
   ]
 })
 export class SharedModule {}
