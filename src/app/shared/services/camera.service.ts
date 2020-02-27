@@ -42,15 +42,13 @@ export class CameraService {
         const base64image = 'data:image/jpeg;base64,' + imageData;
         this.popoverCtrl.dismiss();
         /* retorno da foto */
-        return (this.foto = base64image);
+        return this.foto = base64image;
       } catch (error) {
         this.overlayService.alert({ message: error });
-        this.popoverCtrl.dismiss();
         console.error(error);
       }
     } catch (error1) {
       this.overlayService.alert({ message: error1 });
-      this.popoverCtrl.dismiss();
       console.error(error1);
     }
   }
