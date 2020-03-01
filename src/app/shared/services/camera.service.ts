@@ -29,8 +29,8 @@ export class CameraService {
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       allowEdit: false,
-      targetWidth: 100,
-      targetHeight: 100,
+      targetWidth: 500,
+      targetHeight: 500,
       correctOrientation: true,
       saveToPhotoAlbum: true,
       sourceType: tipoCaminho
@@ -42,6 +42,7 @@ export class CameraService {
         const base64image = 'data:image/jpeg;base64,' + imageData;
         this.popoverCtrl.dismiss();
         /* retorno da foto */
+        this.overlayService.alert({message: base64image});
         return this.foto = base64image;
       } catch (error) {
         this.overlayService.alert({ message: error });

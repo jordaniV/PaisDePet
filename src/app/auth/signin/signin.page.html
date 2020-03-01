@@ -10,12 +10,12 @@
         <form [formGroup]="authForm" (submit)="signin(authProviders.Email)">
           <ng-container *ngIf="!configs.isSignIn">
 
-            <ion-avatar *ngIf="foto != ''; else fotoDefault">
-              <ion-img src="{{ foto }}" alt="usuario-default"></ion-img>
+            <ion-avatar class="container-foto" *ngIf="foto != ''; else fotoDefault">
+              <ion-img src="{{ foto }}"></ion-img>
             </ion-avatar>
 
             <ng-template #fotoDefault>
-              <ion-img src="./assets/img/user-default.png" alt="usuario-default"></ion-img>
+              <ion-img src="./assets/img/user-default.png"></ion-img>
             </ng-template>
 
             <pdp-camera-button></pdp-camera-button>

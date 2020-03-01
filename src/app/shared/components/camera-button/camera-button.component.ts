@@ -46,7 +46,7 @@ export class CameraButtonComponent implements OnInit {
     this.cameraService
       .selecionaImagemPeloDispositivoMobile(tipoCaminho)
       .then((foto: string) => {
-        /* window.localStorage.setItem('caminhoFotoUsuario', foto); */
+        window.localStorage.setItem('caminhoFotoUsuario', foto);
       });
   }
 }
