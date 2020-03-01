@@ -45,7 +45,16 @@ export class SigninPage implements OnInit {
       senha: ['', [Validators.required, Validators.minLength(6)]]
     });
     this.limpaFormulario();
-    this.foto = window.localStorage.getItem('caminhoFotoUsuario');
+    this.verificaSeExisteFotoNoLocalStorage();
+  }
+
+  /* verifica se existe foto armazenada no localstorage */
+  verificaSeExisteFotoNoLocalStorage() {
+    if (window.localStorage.length === 0) {
+      this.foto = '';
+    } else {
+      this.foto = window.localStorage.getItem('caminhoFotoUsuario');
+    }
   }
 
   /*
