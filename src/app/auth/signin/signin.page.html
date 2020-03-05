@@ -11,7 +11,7 @@
           <ng-container *ngIf="!configs.isSignIn">
 
             <ion-avatar class="container-foto" *ngIf="foto != ''; else fotoDefault">
-              <ion-img src="{{ foto }}"></ion-img>
+              <ion-img src="{{ foto }}" (ionImgDidLoad)="verificaSeExisteFotoNoLocalStorage()"></ion-img>
             </ion-avatar>
 
             <ng-template #fotoDefault>
@@ -104,7 +104,7 @@
         >
         <!-- =============== botão cadastrar (muda formulário para cadastro) =================== -->
         <ion-button
-          class="btn-font-size"
+          class="btn-cad-novo"
           expand="block"
           fill="clear"
           color="light"

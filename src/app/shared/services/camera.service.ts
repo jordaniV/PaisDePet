@@ -40,9 +40,8 @@ export class CameraService {
       try {
         const imageData = await this.camera.getPicture(options);
         const base64image = 'data:image/jpeg;base64,' + imageData;
-        this.popoverCtrl.dismiss();
+        // this.popoverCtrl.dismiss();
         /* retorno da foto */
-        this.overlayService.alert({message: base64image});
         return this.foto = base64image;
       } catch (error) {
         this.overlayService.alert({ message: error });

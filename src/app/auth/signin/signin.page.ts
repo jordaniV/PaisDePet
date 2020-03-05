@@ -7,6 +7,9 @@ import { OverlayService } from 'src/app/shared/services/overlay.service';
 import { ActivatedRoute } from '@angular/router';
 import * as firebase from 'firebase';
 import { ModalNotificacaoPage } from 'src/app/shared/pages/modal-notificacao/modal-notificacao.page';
+import { StorageService } from 'src/app/shared/services/storage.service';
+import { CameraService } from 'src/app/shared/services/camera.service';
+import { PictureSourceType } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-signin',
@@ -36,7 +39,9 @@ export class SigninPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private navCtrl: NavController,
     private authService: AuthService,
-    private overlayService: OverlayService
+    private overlayService: OverlayService,
+    private storageService: StorageService,
+    private cameraService: CameraService
   ) {} /* ao rodar a aplicação não vai aparecer o menu */
 
   ngOnInit(): void {
@@ -53,7 +58,7 @@ export class SigninPage implements OnInit {
     if (window.localStorage.length === 0) {
       this.foto = '';
     } else {
-      this.foto = window.localStorage.getItem('caminhoFotoUsuario');
+      this.foto = this.storageService.getFoto();
     }
   }
 

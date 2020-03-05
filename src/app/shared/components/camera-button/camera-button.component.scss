@@ -1,22 +1,18 @@
-/*ion-button {
-  //margin: auto;
-  //width: auto;
-  //height: auto;
-  //text-align: center;
-}*/
 
 .btn-camera {
   //margin-left: auto;
   //margin-right: auto;
+  margin-top: 4%;
   margin-bottom: 5%;
-  //margin-top: 4%;
-  //margin-top: 8%;
-  //text-align: center;
+  align-items: center;
+  display: flex;
+  //flex-direction: row;
+  //flex-wrap: wrap;
+  justify-content: center;
 }
 
 .campo-form {
   --background: rgba(0, 0, 0, 0);
-  margin-bottom: 5%;
   color: #fff;
 }
 
@@ -24,7 +20,3 @@
   position: absolute;
   display: none;
 }
-
-/*.input-file-label {
-  Whatever you want
-}*/

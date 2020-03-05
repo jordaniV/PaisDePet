@@ -3,6 +3,7 @@ import { OverlayService } from 'src/app/shared/services/overlay.service';
 import { PlataformaService } from '../../services/plataforma.service';
 import { CameraService } from '../../services/camera.service';
 import { PictureSourceType, Camera } from '@ionic-native/camera/ngx';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'pdp-camera-button',
@@ -16,6 +17,7 @@ export class CameraButtonComponent implements OnInit {
     private cameraService: CameraService,
     private plataformaService: PlataformaService,
     private overlayService: OverlayService,
+    private storageService: StorageService,
     private camera: Camera
   ) {}
 
@@ -36,17 +38,16 @@ export class CameraButtonComponent implements OnInit {
   /*
   seleciona pela janela de arquivos do pc para carregamento de fotos
   */
-  selecionaImagemPeloBrowser() {
-  }
+  selecionaImagemPeloBrowser() {}
 
   /*
   seleciona a opção de foto através de um dispositivo mobile
   */
-  selecionaImagemPeloDispositivoMobile(tipoCaminho: PictureSourceType) {
-    this.cameraService
-      .selecionaImagemPeloDispositivoMobile(tipoCaminho)
-      .then((foto: string) => {
-        window.localStorage.setItem('caminhoFotoUsuario', foto);
-      });
+  async selecionaImagemPeloDispositivoMobile(tipoCaminho: PictureSourceType) {
+    const loading = await this.overlayService.loading();
+    await this.cameraService.selecionaImagemPeloDispositivoMobile(tipoCaminho).then((foto: string) => {
+      this.storageService.setFoto(foto);
+      loading.dismiss();
+    });
   }
 }
