@@ -53,8 +53,14 @@ export class SigninPage implements OnInit {
     this.verificaSeExisteFotoNoLocalStorage();
   }
 
+  /* retorno da foto que foi armazenada no cameraService dentro do component cameraButton
+  através do EventEmitter  */
+  recebeFotoEmitidaPeloComponentButton(avatar: string) {
+    this.foto = avatar;
+  }
+
   /* verifica se existe foto armazenada no localstorage */
-  verificaSeExisteFotoNoLocalStorage() {
+  verificaSeExisteFotoNoLocalStorage(): void {
     if (window.localStorage.length === 0) {
       this.foto = '';
     } else {

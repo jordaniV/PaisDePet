@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { OverlayService } from 'src/app/shared/services/overlay.service';
 import { PlataformaService } from '../../services/plataforma.service';
 import { CameraService } from '../../services/camera.service';
@@ -12,6 +12,7 @@ import { StorageService } from '../../services/storage.service';
 })
 export class CameraButtonComponent implements OnInit {
   ehBrowser = false; /* condiciona a plataforma e se vai ter a opção de camera ou não habilitada ao usuário */
+  @Output() caminhoFoto = new EventEmitter();
 
   constructor(
     private cameraService: CameraService,
@@ -46,7 +47,8 @@ export class CameraButtonComponent implements OnInit {
   async selecionaImagemPeloDispositivoMobile(tipoCaminho: PictureSourceType) {
     const loading = await this.overlayService.loading();
     await this.cameraService.selecionaImagemPeloDispositivoMobile(tipoCaminho).then((foto: string) => {
-      this.storageService.setFoto(foto);
+      // this.storageService.setFoto(foto);
+      this.caminhoFoto.emit(foto);
       loading.dismiss();
     });
   }
