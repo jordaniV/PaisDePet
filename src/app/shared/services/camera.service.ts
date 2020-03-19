@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
-import { PopoverController } from '@ionic/angular';
 import { OverlayService } from './overlay.service';
 
 @Injectable({
@@ -11,14 +10,13 @@ export class CameraService {
 
   constructor(
     private camera: Camera,
-    private overlayService: OverlayService,
-    private popoverCtrl: PopoverController
+    private overlayService: OverlayService
   ) {}
 
   /*
   seleciona a opção de foto através de um dispositivo mobile
   Se o caminho será pela camera ou foto armazenada no celular
-  vai depender do para,etro passado atraves de tipoCaminho
+  vai depender do parametro passado atraves de tipoCaminho
   */
   async selecionaImagemPeloDispositivoMobile(tipoCaminho: PictureSourceType) {
     this.foto = '';
@@ -40,7 +38,6 @@ export class CameraService {
       try {
         const imageData = await this.camera.getPicture(options);
         const base64image = 'data:image/jpeg;base64,' + imageData;
-        // this.popoverCtrl.dismiss();
         /* retorno da foto */
         return this.foto = base64image;
       } catch (error) {

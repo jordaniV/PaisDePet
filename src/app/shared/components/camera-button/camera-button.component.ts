@@ -14,29 +14,18 @@ export class CameraButtonComponent implements OnInit {
   ehBrowser = false; /* condiciona a plataforma e se vai ter a opção de camera ou não habilitada ao usuário */
   file;
 
-  @Output() caminhoFoto = new EventEmitter();
+  @Output() caminhoFoto = new EventEmitter(); /* envia a foto do component para atela de signin  */
 
   constructor(
     private cameraService: CameraService,
     private plataformaService: PlataformaService,
     private overlayService: OverlayService,
-    private storageService: StorageService,
     private camera: Camera
   ) {}
 
   ngOnInit() {
     this.ehBrowser = this.plataformaService.ehBrowser();
   }
-
-  /*
-  seleciona opção de foto salva em diretório. Aqui é verificado se a opção de arquivo veio de uma plataforma browser ou mobile.
-  dependendo da opção ele chama o metodo específico
-
-  selecionaOpcaoArquivo() {
-    this.plataformaService.ehBrowser()
-      ? this.selecionaFotoPeloBrowser()
-      : this.selecionaFotoPeloDispositivoMobile(this.camera.PictureSourceType.PHOTOLIBRARY);
-  } */
 
   /* abre o  action sheet */
   abreOpcoesDeFoto() {
@@ -66,7 +55,6 @@ export class CameraButtonComponent implements OnInit {
   */
   selecionaImagemPeloBrowser($event): void {
     this.file = URL.createObjectURL($event.target.files[0]);
-    console.log(this.file);
     this.caminhoFoto.emit(this.file);
   }
 
@@ -78,7 +66,6 @@ export class CameraButtonComponent implements OnInit {
     await this.cameraService
       .selecionaImagemPeloDispositivoMobile(tipoCaminho)
       .then((foto: string) => {
-        // this.storageService.setFoto(foto);
         this.caminhoFoto.emit(foto);
         loading.dismiss();
       });
