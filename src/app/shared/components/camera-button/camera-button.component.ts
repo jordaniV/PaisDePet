@@ -12,6 +12,8 @@ import { StorageService } from '../../services/storage.service';
 })
 export class CameraButtonComponent implements OnInit {
   ehBrowser = false; /* condiciona a plataforma e se vai ter a opção de camera ou não habilitada ao usuário */
+  file;
+
   @Output() caminhoFoto = new EventEmitter();
 
   constructor(
@@ -36,20 +38,49 @@ export class CameraButtonComponent implements OnInit {
       : this.selecionaFotoPeloDispositivoMobile(this.camera.PictureSourceType.PHOTOLIBRARY);
   } */
 
+  /* abre o  action sheet */
+  abreOpcoesDeFoto() {
+    this.overlayService.actionSheet({
+      header: 'Selecionar foto...',
+      buttons: [
+        {
+          text: 'Câmera',
+          icon: 'camera',
+          handler: () => {
+            this.selecionaImagemPeloDispositivoMobile(this.camera.PictureSourceType.CAMERA);
+          }
+        },
+        {
+          text: 'Galeria',
+          icon: 'folder-open',
+          handler: () => {
+            this.selecionaImagemPeloDispositivoMobile(this.camera.PictureSourceType.PHOTOLIBRARY);
+          }
+        }
+      ]
+    });
+  }
+
   /*
   seleciona pela janela de arquivos do pc para carregamento de fotos
   */
-  selecionaImagemPeloBrowser() {}
+  selecionaImagemPeloBrowser($event): void {
+    this.file = URL.createObjectURL($event.target.files[0]);
+    console.log(this.file);
+    this.caminhoFoto.emit(this.file);
+  }
 
   /*
   seleciona a opção de foto através de um dispositivo mobile
   */
   async selecionaImagemPeloDispositivoMobile(tipoCaminho: PictureSourceType) {
     const loading = await this.overlayService.loading();
-    await this.cameraService.selecionaImagemPeloDispositivoMobile(tipoCaminho).then((foto: string) => {
-      // this.storageService.setFoto(foto);
-      this.caminhoFoto.emit(foto);
-      loading.dismiss();
-    });
+    await this.cameraService
+      .selecionaImagemPeloDispositivoMobile(tipoCaminho)
+      .then((foto: string) => {
+        // this.storageService.setFoto(foto);
+        this.caminhoFoto.emit(foto);
+        loading.dismiss();
+      });
   }
 }

@@ -1,16 +1,25 @@
 <div class="btn-camera">
-  <ion-item lines="none" detail="false" class="campo-form">
+
+  <ion-button *ngIf="!ehBrowser" fill="clear" (click)="abreOpcoesDeFoto()">
+    <ion-icon name="add-circle" slot="icon-only" color="light" size="large"></ion-icon>
+  </ion-button>
+
+  <input *ngIf="ehBrowser" type="file" accept="image/*" id="input-file" (change)="selecionaImagemPeloBrowser($event)">
+    <label *ngIf="ehBrowser" class="input-file-label" for="input-file">
+    <ion-icon name="folder-open" slot="icon-only" color="light" size="large"></ion-icon>
+  </label>
+  <!-- <ion-item lines="none" detail="false" class="campo-form">
     <ion-button *ngIf="!ehBrowser" fill="clear" (click)="selecionaImagemPeloDispositivoMobile(this.camera.PictureSourceType.CAMERA)">
       <ion-icon name="camera" slot="icon-only" color="light" size="large"></ion-icon>
     </ion-button>
 
-    <input *ngIf="ehBrowser" type="file" accept="image/*" id="input-file">
-    <label *ngIf="ehBrowser" class="input-file-label" for="input-file" (click)="selecionaImagemPeloBrowser()">
+    <input *ngIf="ehBrowser" type="file" accept="image/*" id="input-file" (change)="selecionaImagemPeloBrowser($event)" >
+    <label *ngIf="ehBrowser" class="input-file-label" for="input-file">
       <ion-icon name="folder-open" slot="icon-only" color="light" size="large"></ion-icon>
     </label>
 
     <ion-button *ngIf="!ehBrowser" fill="clear" (click)="selecionaImagemPeloDispositivoMobile(this.camera.PictureSourceType.PHOTOLIBRARY)">
       <ion-icon name="folder-open" slot="icon-only" color="light" size="large"></ion-icon>
     </ion-button>
-  </ion-item>
+  </ion-item>-->
 </div>
