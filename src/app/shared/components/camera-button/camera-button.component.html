@@ -1,6 +1,6 @@
 <div class="btn-camera">
-  <ion-button *ngIf="!ehBrowser" fill="clear" (click)="abreOpcoesDeFoto()">
-    <ion-icon name="add-circle" slot="icon-only" color="light" size="large"></ion-icon>
+  <ion-button class="btn-mais" *ngIf="!ehBrowser" fill="clear" (click)="abreOpcoesDeFoto()">
+    <ion-icon class="btn-icone" name="add-circle" slot="icon-only" color="light" size="large"></ion-icon>
   </ion-button>
 
   <input *ngIf="ehBrowser" type="file" accept="image/*" id="input-file" (change)="selecionaImagemPeloBrowser($event)">
