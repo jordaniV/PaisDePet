@@ -12,9 +12,9 @@ import { StorageService } from '../../services/storage.service';
 })
 export class CameraButtonComponent implements OnInit {
   ehBrowser = false; /* condiciona a plataforma e se vai ter a opção de camera ou não habilitada ao usuário */
-  file;
+  file: string;
 
-  @Output() caminhoFoto = new EventEmitter(); /* envia a foto do component para atela de signin  */
+  @Output() caminhoFoto = new EventEmitter<string>(); /* envia a foto do component para atela de signin  */
 
   constructor(
     private cameraService: CameraService,

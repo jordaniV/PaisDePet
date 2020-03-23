@@ -38,9 +38,7 @@ export class SigninPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private navCtrl: NavController,
     private authService: AuthService,
-    private overlayService: OverlayService,
-    private storageService: StorageService,
-    private cameraService: CameraService
+    private overlayService: OverlayService
   ) {} /* ao rodar a aplicação não vai aparecer o menu */
 
   ngOnInit(): void {
@@ -104,8 +102,7 @@ export class SigninPage implements OnInit {
         });
         this.limpaFormulario();
         this.navCtrl.navigateForward(
-          this.activatedRoute.snapshot.queryParamMap.get('redirect') || '/home'
-        );
+          this.activatedRoute.snapshot.queryParamMap.get('redirect') || '/home');
       } else {
         this.preencheCamposParaModalNotificacoes();
         this.limpaFormulario();
@@ -141,7 +138,7 @@ export class SigninPage implements OnInit {
   somente para login via email
   */
   recuperaSenha() {
-    this.navCtrl.navigateRoot('/recuperar-senha');
+    this.navCtrl.navigateRoot('/recuperarsenha');
   }
 
   /*

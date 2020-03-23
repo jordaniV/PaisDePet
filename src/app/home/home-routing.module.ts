@@ -1,19 +1,18 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-import { MeusPetsPage } from './meus-pets.page';
+import { RouterModule, Routes } from '@angular/router';
+import { HomePage } from './home.page';
 import { AuthGuard } from '../core/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: MeusPetsPage,
+    component: HomePage,
     canActivateChild: [AuthGuard]
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class MeusPetsPageRoutingModule {}
+export class HomePageRoutingModule {}
