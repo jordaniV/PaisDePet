@@ -9,7 +9,6 @@ import * as firebase from 'firebase';
 import { ModalNotificacaoPage } from 'src/app/shared/pages/modal-notificacao/modal-notificacao.page';
 import { StorageService } from 'src/app/shared/services/storage.service';
 import { CameraService } from 'src/app/shared/services/camera.service';
-import { PictureSourceType } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-signin',
@@ -50,22 +49,12 @@ export class SigninPage implements OnInit {
       senha: ['', [Validators.required, Validators.minLength(6)]]
     });
     this.limpaFormulario();
-    this.verificaSeExisteFotoNoLocalStorage();
   }
 
   /* retorno da foto que foi armazenada no cameraService dentro do component cameraButton
   através do EventEmitter  */
   recebeFotoEmitidaPeloComponentButton(avatar: string) {
     this.foto = avatar;
-  }
-
-  /* verifica se existe foto armazenada no localstorage */
-  verificaSeExisteFotoNoLocalStorage(): void {
-    if (window.localStorage.length === 0) {
-      this.foto = '';
-    } else {
-      this.foto = this.storageService.getFoto();
-    }
   }
 
   /*
