@@ -3,14 +3,16 @@ ion-input {
   --placeholder-opacity: 100%;
 }
 
-.img-avatar-selecionada {
+.div-principal {
+  height: 100%;
   width: 100%;
-  margin: auto;
-  object-fit: cover;
-  top: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.container-foto {
+// ion-avatar com img dentro
+.avatar-img {
   border: solid 4px #A89CD7;
   margin: auto;
   margin-top: 5%;
@@ -19,6 +21,15 @@ ion-input {
   height : 130px;
 }
 
+// img quando selecionada foto
+.img-avatar-selecionada {
+  width: 100%;
+  margin: auto;
+  object-fit: cover;
+  top: 10%;
+}
+
+// img default (boneco profile)
 .img-avatar-default {
   margin: auto;
   margin-top: 10%;
@@ -28,28 +39,32 @@ ion-input {
   height : 90px;
 }
 
+// campos do formulario
 .campo-form {
   --border-width: 2px;
   --border-color: #f4f5f8;
   --border-radius: 100px;
   --background: rgba(0, 0, 0, 0);
-  margin-bottom: 5%;
+  margin-bottom: 3%;
   color: #fff;
 }
 
+// separador dos campos de login
 .separador-elems-login {
   height: 3%;
 }
 
+// separador img do formulario de login
 .separador-img-login {
   height: 10%;
 }
 
+// botão para cadastrar nova conta
 .btn-cad-novo {
   font-size: 10pt;
 }
 
-
+// imagem logo do pais de pet
 .img-logo {
   max-width: 200px;
   max-height: 200px;
@@ -58,5 +73,5 @@ ion-input {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 15%;
+  // margin-top: 15%;
 }
