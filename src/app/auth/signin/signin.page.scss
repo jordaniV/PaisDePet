@@ -39,6 +39,11 @@ ion-input {
   height : 90px;
 }
 
+.item-btns {
+  --background: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
 // campos do formulario
 .campo-form {
   --border-width: 2px;
@@ -56,12 +61,7 @@ ion-input {
 
 // separador img do formulario de login
 .separador-img-login {
-  height: 10%;
-}
-
-// botão para cadastrar nova conta
-.btn-cad-novo {
-  font-size: 10pt;
+  height: 8%;
 }
 
 // imagem logo do pais de pet

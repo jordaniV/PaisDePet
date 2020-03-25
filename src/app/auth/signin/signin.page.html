@@ -96,7 +96,7 @@
               {{ configs.action }}
             </ion-button>
             <!-- ================================== -->
-            <div *ngIf="configs.isSignIn" class="label-ou ion-text-center">
+            <div *ngIf="configs.isSignIn" class="ion-text-center">
               <ion-label color="light">- ou -</ion-label>
             </div>
           </form>
@@ -109,27 +109,28 @@
             (click)="signin(authProviders.Facebook)"
           >
             <ion-icon name="logo-facebook" size="large" slot="start" color="tertiary"> </ion-icon>
-            Login com Faceboo
+            Login com Facebook
           </ion-button>
           <!-- ============== botão recuperar senha ==================== -->
-          <ion-button
-            *ngIf="configs.isSignIn"
-            class="btn-font-size"
-            expand="block"
-            fill="clear"
-            color="light"
-            (click)="recuperaSenha()"
-            >Esqueci minha senha</ion-button
-          >
-          <!-- =============== botão cadastrar (muda formulário para cadastro) =================== -->
-          <ion-button
-            class="btn-cad-novo"
-            expand="block"
-            fill="clear"
-            color="light"
-            (click)="alternarEntreLoginCadastro()"
-            >- {{ configs.actionChange }} -
-          </ion-button>
+          <ion-item lines="none" class="item-btns">
+            <ion-button
+              *ngIf="configs.isSignIn"
+              expand="block"
+              fill="clear"
+              color="light"
+              (click)="recuperaSenha()"
+              >Esqueci minha senha</ion-button
+            >
+            <!-- =============== botão cadastrar (muda formulário para cadastro) =================== -->
+            <ion-button
+              slot="end"
+              expand="block"
+              fill="clear"
+              color="light"
+              (click)="alternarEntreLoginCadastro()"
+              >{{ configs.actionChange }}
+            </ion-button>
+          </ion-item>
           <!-- ================================== -->
         </ion-col>
       </ion-row>
