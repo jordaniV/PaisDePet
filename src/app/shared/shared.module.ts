@@ -18,7 +18,8 @@ import { ProfileButtonComponent } from './components/profile-button/profile-butt
   ],
   imports: [
     IonicModule,
-    CommonModule],
+    CommonModule
+  ],
   exports: [
     IonicModule,
     CommonModule,
