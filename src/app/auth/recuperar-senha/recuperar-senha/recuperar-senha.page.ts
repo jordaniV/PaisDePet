@@ -42,7 +42,7 @@ export class RecuperarSenhaPage implements OnInit {
   */
   retornarParaTelaDeLogin() {
     this.limpaFormulario();
-    this.navCtrl.navigateRoot('/signin');
+    this.navCtrl.navigateRoot('/login');
   }
 
   /*
@@ -65,7 +65,7 @@ export class RecuperarSenhaPage implements OnInit {
         txtPrincipal:  'Um email foi enviado para alteração da sua senha. Obrigado.',
         txtBotao: 'Retornar a página de login',
         icone: 'checkmark-circle-outline',
-        rota: '/signin'
+        rota: '/login'
       }
     });
   }

@@ -3,6 +3,6 @@ export interface Usuario {
   login: string;
   senha: string;
   nome: string;
-  caminhoFoto: Blob;
+  caminhoFoto: string;
   uidAuth: string; // uid que vem da tela de autenticação
 }

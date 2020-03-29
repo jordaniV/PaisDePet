@@ -7,8 +7,8 @@ import { OverlayService } from 'src/app/shared/services/overlay.service';
 import { ActivatedRoute } from '@angular/router';
 import * as firebase from 'firebase';
 import { ModalNotificacaoPage } from 'src/app/shared/pages/modal-notificacao/modal-notificacao.page';
-import { StorageService } from 'src/app/shared/services/storage.service';
-import { CameraService } from 'src/app/shared/services/camera.service';
+import { DbService } from 'src/app/shared/services/db.service';
+import { Usuario } from 'src/app/models/usuario.model';
 
 @Component({
   selector: 'app-signin',
@@ -19,7 +19,7 @@ export class SigninPage implements OnInit {
   authForm: FormGroup;
   authProviders = AuthProvider;
   foto = '';
-  usuario: firebase.User;
+  usuario: Usuario;
 
   /*
   configs que parametrizam a alternância entre tela de login e cadastro
@@ -38,7 +38,8 @@ export class SigninPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private navCtrl: NavController,
     private authService: AuthService,
-    private overlayService: OverlayService
+    private overlayService: OverlayService,
+    private dbService: DbService
   ) {} /* ao rodar a aplicação não vai aparecer o menu */
 
   ngOnInit(): void {
@@ -61,7 +62,8 @@ export class SigninPage implements OnInit {
   limpaFormulario() {
     this.authForm.patchValue({
       email: '',
-      senha: ''
+      senha: '',
+      nome: ''
     });
   }
 
@@ -104,6 +106,14 @@ export class SigninPage implements OnInit {
         this.navCtrl.navigateForward(
           this.activatedRoute.snapshot.queryParamMap.get('redirect') || '/home');
       } else {
+        /* caso seja cadastro novo */
+        this.usuario = this.authForm.value;
+        this.usuario.caminhoFoto = this.foto;
+        credencial.user.updateProfile({ photoURL: this.foto}); // atualizo o caminho da foto
+        this.usuario.uidAuth = credencial.user.uid;
+        this.dbService // adiciono os dados do usuario cadastrado dentro da coleçao usuarios
+          .novo('/usuarios', this.usuario)
+          .catch((err) => this.overlayService.toast({message: err}));
         this.preencheCamposParaModalNotificacoes();
         this.limpaFormulario();
         this.alternarEntreLoginCadastro();
@@ -170,7 +180,7 @@ export class SigninPage implements OnInit {
         txtPrincipal: 'Usuário cadastrado com sucesso!',
         txtBotao: 'Acessar Pais de Pet',
         icone: 'checkmark-circle-outline',
-        rota: '/signin'
+        rota: '/login'
       }
     });
   }

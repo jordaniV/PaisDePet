@@ -3,13 +3,13 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'signin', pathMatch: 'full' },
-  { path: 'signin', loadChildren: './auth/signin/signin.module#SigninPageModule' },
-  { path: 'home', loadChildren: './home/home.module#HomePageModule', canLoad: [AuthGuard] },
-  { path: 'meuspets', loadChildren: './meus-pets/meus-pets.module#MeusPetsPageModule', canLoad: [AuthGuard] },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', loadChildren: './auth/signin/signin.module#SigninPageModule' },
+  { path: 'home', loadChildren: './pages/home/home.module#HomePageModule', canLoad: [AuthGuard] },
+  { path: 'meuspets', loadChildren: './pages/meus-pets/meus-pets.module#MeusPetsPageModule', canLoad: [AuthGuard] },
   { path: 'recuperarsenha', loadChildren: './auth/recuperar-senha/recuperar-senha/recuperar-senha.module#RecuperarSenhaPageModule' },
   { path: 'notificacao', loadChildren: './shared/pages/modal-notificacao/modal-notificacao.module#ModalNotificacaoPageModule' },
-  { path: '**', loadChildren: './erros/erros.module#ErrosModule' }
+  { path: '**', loadChildren: './pages/erros/erros.module#ErrosModule' }
 ];
 
 @NgModule({

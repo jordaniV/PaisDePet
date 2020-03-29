@@ -12,6 +12,7 @@ export abstract class Firestore<T extends { id: string }> {
   }
 
   /* auxilia na criação e atualização de registros
+  operation pode ser set ou update
   set: (usado quando chamar o create) substitui o objeto inteiro, na referência criada
   update: (usado quando chamar o update) atualiza apenas as propriedades necessários*/
   private setItem(item: T, operation: string): Promise<T> {

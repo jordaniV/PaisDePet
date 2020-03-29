@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { NaoEncontradoComponent } from './nao-encontrado/nao-encontrado.component';
 import { RouterModule } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [NaoEncontradoComponent],
