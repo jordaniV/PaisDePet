@@ -1,13 +1,12 @@
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AuthProvider } from 'src/app/core/services/auth.types';
 import { Component, OnInit } from '@angular/core';
+import { DbService } from 'src/app/shared/services/db.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { ModalNotificacaoPage } from 'src/app/shared/pages/modal-notificacao/modal-notificacao.page';
 import { NavController } from '@ionic/angular';
 import { OverlayService } from 'src/app/shared/services/overlay.service';
-import { ActivatedRoute } from '@angular/router';
-import * as firebase from 'firebase';
-import { ModalNotificacaoPage } from 'src/app/shared/pages/modal-notificacao/modal-notificacao.page';
-import { DbService } from 'src/app/shared/services/db.service';
 import { Usuario } from 'src/app/models/usuario.model';
 
 @Component({
@@ -44,10 +43,10 @@ export class SigninPage implements OnInit {
 
   ngOnInit(): void {
     this.authForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      senha: ['', [Validators.required, Validators.minLength(6)]]
+      email: ['teste@teste.com', [Validators.required, Validators.email]],
+      senha: ['123456', [Validators.required, Validators.minLength(6)]]
     });
-    this.limpaFormulario();
+    // this.limpaFormulario(); desmarcar essa linha após terminar
   }
 
   /* retorno da foto que foi armazenada no cameraService dentro do component cameraButton
@@ -65,6 +64,7 @@ export class SigninPage implements OnInit {
       senha: '',
       nome: ''
     });
+    this.foto = '';
   }
 
   /*
@@ -109,11 +109,10 @@ export class SigninPage implements OnInit {
         /* caso seja cadastro novo */
         this.usuario = this.authForm.value;
         this.usuario.caminhoFoto = this.foto;
-        credencial.user.updateProfile({ photoURL: this.foto}); // atualizo o caminho da foto
         this.usuario.uidAuth = credencial.user.uid;
         this.dbService // adiciono os dados do usuario cadastrado dentro da coleçao usuarios
           .novo('/usuarios', this.usuario)
-          .catch((err) => this.overlayService.toast({message: err}));
+          .catch(err => this.overlayService.toast({ message: err }));
         this.preencheCamposParaModalNotificacoes();
         this.limpaFormulario();
         this.alternarEntreLoginCadastro();
@@ -134,6 +133,7 @@ export class SigninPage implements OnInit {
   Troco os nomes dos elementos de login para cadastro, e incluo o formControl do nome
   */
   alternarEntreLoginCadastro(): void {
+    this.limpaFormulario();
     this.configs.isSignIn = !this.configs.isSignIn;
     const { isSignIn } = this.configs;
     this.configs.action = isSignIn ? 'Entrar' : 'Cadastrar';
