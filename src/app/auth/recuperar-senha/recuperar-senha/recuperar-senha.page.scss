@@ -7,13 +7,26 @@ ion-textarea {
   margin-top: 15%;
 }
 
+.div-principal {
+  padding-left: 2px;
+  padding-right: 2px;
+  height: 90%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-enviar {
+  --border-radius: 8px !important;
+}
+
+// campos do formulario
 .campo-form {
-  --border-width: 2px;
-  --border-color: #f4f5f8;
-  --border-radius: 100px;
-  --background: rgba(0, 0, 0, 0);
-  margin-bottom: 5%;
-  color: #fff;
+  --border-radius: 15px !important;
+  --background: rgb(214, 214, 214);
+  margin-bottom: 3%;
+  color: #6958AF;
 }
 
 .separador-elems-login {

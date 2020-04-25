@@ -1,53 +1,35 @@
-<ion-content class="ion-padding" color="primary">
-  <ion-grid>
-    <ion-row class="ion-justify-content-center">
-      <ion-col size-sm="8" size-md="6" size-lg="6" size-xl="3">
+<ion-content class="ion-padding" color="light">
+  <div class="div-principal">
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size-sm="8" size-md="6" size-lg="6" size-xl="3">
+          <img src="../assets/img/paisdepet-logo.png" />
 
-      <img src="../assets/img/paisdepet-logo.png"/>
+          <ion-textarea class="ion-text-justify" color="primary"
+            >Digite o email do cadastro no campo abaixo. Você vai receber um email com as
+            informações para alteração de sua senha.
+          </ion-textarea>
 
-      <ion-textarea class="ion-text-justify" color="light">Digite o email do cadastro no campo abaixo. Você vai receber um email com as informações para alteração de sua senha.</ion-textarea>
+          <form [formGroup]="emailForm" (submit)="redefinirSenha()">
 
-      <form [formGroup]="emailForm" (submit)="redefinirSenha()">
-        <ion-item lines="none" class="campo-form">
-          <ion-input
-            formControlName="email"
-            type="email"
-            placeholder="Email"
-            inputmode="email"
-          ></ion-input>
-          <ion-note slot="end" color="tertiary" *ngIf="email.dirty && email.hasError('required')">
-            Obrigatório
-          </ion-note>
-          <ion-note slot="end" color="tertiary" *ngIf="email.dirty && email.hasError('email')">
-            Email Inválido
-          </ion-note>
-          <ion-icon name="mail" color="light" slot="end"> </ion-icon>
-        </ion-item>
+            <ion-item lines="none" class="campo-form">
+              <ion-label position="stacked">Email</ion-label>
+              <ion-input formControlName="email" type="email" inputmode="email"></ion-input>
+              <ion-note class="ion-align-self-center" slot="end" color="primary" *ngIf="email.dirty && email.hasError('required')" >Obrigatório</ion-note>
+              <ion-note class="ion-align-self-center" slot="end" color="primary" *ngIf="email.dirty && email.hasError('email')">Email Inválido</ion-note>
+              <ion-icon class="ion-align-self-center" name="mail" color="primary" slot="end"> </ion-icon>
+            </ion-item>
 
-        <div class="separador-elems-login"></div>
+            <div class="separador-elems-login"></div>
 
-        <ion-button
-          type="submit"
-          expand="block"
-          shape="round"
-          color="tertiary"
-          [disabled]="emailForm.invalid">
-          Enviar
-        </ion-button>
+            <ion-button class="btn-enviar" type="submit" expand="block" shape="round" color="primary" [disabled]="emailForm.invalid">Enviar</ion-button>
 
-        <div class="separador-botoes"></div>
-      </form>
+            <div class="separador-botoes"></div>
+          </form>
 
-        <ion-button
-          expand="block"
-          fill="clear"
-          shape="round"
-          color="light"
-          (click)="retornarParaTelaDeLogin()"
-          >- Retornar -
-        </ion-button>
-
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+          <ion-button expand="block" fill="clear" shape="round" color="primary" (click)="retornarParaTelaDeLogin()">- Retornar -</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

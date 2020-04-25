@@ -3,6 +3,10 @@ import { AngularFirestore, AngularFirestoreCollection, QueryFn } from '@angular/
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 
+/*
+responsável pelas operações de banco de dados dentro do firebase.
+*/
+
 @Injectable({
   providedIn: 'root'
 })

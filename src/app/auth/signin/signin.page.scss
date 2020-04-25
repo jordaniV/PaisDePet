@@ -1,9 +1,11 @@
-ion-input {
-  --placeholder-color: #f4f5f8;
-  --placeholder-opacity: 100%;
-}
+/*ion-content {
+  // --background: linear-gradient(#6958AF, #38AECC) !important;
+  --background: linear-gradient(rgba(105,88,175,1), rgba(255,0,0,0)) !important;
+} */
 
 .div-principal {
+  padding-left: 2px;
+  padding-right: 2px;
   height: 90%;
   width: 100%;
   display: flex;
@@ -31,9 +33,8 @@ ion-input {
 
 // img default (boneco profile)
 .img-avatar-default {
+  display: block;
   margin: auto;
-  margin-top: 10%;
-  margin-bottom: 10%;
   text-align: center;
   width: 90px;
   height : 90px;
@@ -46,12 +47,18 @@ ion-input {
 
 // campos do formulario
 .campo-form {
-  --border-width: 2px;
-  --border-color: #f4f5f8;
-  --border-radius: 100px;
-  --background: rgba(0, 0, 0, 0);
+  --border-radius: 15px !important;
+  --background: rgb(214, 214, 214);
   margin-bottom: 3%;
-  color: #fff;
+  color: #6958AF;
+}
+
+.campo-form ion-input {
+  font-weight: bold;
+}
+
+.btn-entrar {
+  --border-radius: 8px !important;
 }
 
 // separador dos campos de login
@@ -65,7 +72,7 @@ ion-input {
 }
 
 // imagem logo do pais de pet
-.img-logo {
+.img-logo-app {
   max-width: 200px;
   max-height: 200px;
   width: auto;
@@ -73,5 +80,14 @@ ion-input {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  // margin-top: 15%;
+}
+
+.img-logo-empresa {
+  max-width: 75px;
+  max-height: 75px;
+  width: auto;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

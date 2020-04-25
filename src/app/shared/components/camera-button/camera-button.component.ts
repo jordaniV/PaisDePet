@@ -3,7 +3,6 @@ import { OverlayService } from 'src/app/shared/services/overlay.service';
 import { PlataformaService } from '../../services/plataforma.service';
 import { CameraService } from '../../services/camera.service';
 import { PictureSourceType, Camera } from '@ionic-native/camera/ngx';
-import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'pdp-camera-button',

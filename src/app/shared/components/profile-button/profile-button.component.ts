@@ -7,7 +7,7 @@ import { OverlayService } from '../../services/overlay.service';
   styleUrls: ['./profile-button.component.scss']
 })
 export class ProfileButtonComponent implements OnInit {
-  
+
   constructor(
     private overlayService: OverlayService
   ) {}

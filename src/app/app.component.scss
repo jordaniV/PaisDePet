@@ -1,4 +1,30 @@
 ion-menu {
-    min-width: 300px !important;
-    max-width: 300px !important;
-  }
+  min-width: 300px !important;
+  max-width: 300px !important;
+}
+
+ion-toolbar {
+  border-radius: 0px 0px 0px 20px;
+}
+
+ion-content {
+  --background: #6958af !important;
+}
+
+.split-pane-side {
+  border-right: 0px !important;
+}
+
+.item-menu {
+  border-right: 0px !important;
+  --background: #6958af;
+}
+:hover.item-menu {
+  color: #fff;
+  background: #fff;
+  --color-hover: #000;
+}
+
+:hover.item-menu ion-icon {
+  color: #000;
+}
