@@ -1,10 +1,23 @@
+ion-content {
+  //--background: linear-gradient(#9580eb, #2d244e) !important;
+  --background: linear-gradient(#6958AF, #38AECC) !important;
+}
+
 ion-input {
   --placeholder-color: #f4f5f8;
   --placeholder-opacity: 100%;
 }
 
-ion-textarea {
-  margin-top: 15%;
+h1 {
+  text-align: center;
+  color: #6958AF;
+  font-size: 20px;
+}
+
+// card do formulário
+.card-form {
+  border-radius: 15px;
+  background: #fff;
 }
 
 .div-principal {
@@ -29,12 +42,25 @@ ion-textarea {
   color: #6958AF;
 }
 
+.campo-form ion-input {
+  font-weight: bold;
+}
+
 .separador-elems-login {
   height: 5%;
 }
 
 .separador-botoes {
   height: 2%;
+}
+
+.item-btn-enviar {
+  --inner-padding-end: none;
+}
+
+.item-btn-enviar ion-button {
+  height: 45px;
+  width: 110px;
 }
 
 img {

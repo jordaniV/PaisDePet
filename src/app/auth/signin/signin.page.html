@@ -1,74 +1,154 @@
-<ion-content class="ion-padding" color="light">
+<ion-content >
   <div class="div-principal">
     <ion-grid>
       <ion-row class="ion-justify-content-center">
-        <ion-col size-sm="8" size-md="6" size-lg="6" size-xl="3">
+        <ion-col size="12" size-sm="8" size-md="6" size-lg="6" size-xl="3">
+          <ion-card class="card-form">
+            <ion-card-header>
+              <img
+                class="img-logo-app"
+                *ngIf="configs.isSignIn"
+                src="../assets/img/paisdepet-logo.png"
+                (click)="segredo()"
+              />
+            </ion-card-header>
+            <ion-card-content>
+              <!-- logo -->
 
-          <!-- logo -->
-          <img class="img-logo-app" *ngIf="configs.isSignIn" src="../assets/img/paisdepet-logo.png" (click)="segredo()"/>
+              <div *ngIf="configs.isSignIn" class="separador-img-login"></div>
 
-          <div *ngIf="configs.isSignIn" class="separador-img-login"></div>
+              <!-- =============== início forms =================== -->
+              <form [formGroup]="authForm" (submit)="signin(authProviders.Email)">
+                <ng-container *ngIf="!configs.isSignIn">
+                  <!-- avatar com a imagem selecionada -->
+                  <ion-avatar class="avatar" *ngIf="foto != ''; else fotoDefault">
+                    <ion-img class="img-avatar-selecionada" src="{{ foto }}"></ion-img>
+                  </ion-avatar>
 
-          <!-- =============== início forms =================== -->
-          <form [formGroup]="authForm" (submit)="signin(authProviders.Email)">
+                  <!-- template com imagem default de avatar -->
+                  <ng-template #fotoDefault>
+                    <ion-icon class="img-avatar-default" name="person" color="secondary"></ion-icon>
+                  </ng-template>
 
-            <ng-container *ngIf="!configs.isSignIn">
-              <!-- avatar com a imagem selecionada -->
-              <ion-avatar class="avatar-img" *ngIf="foto != ''; else fotoDefault">
-                <ion-img class="img-avatar-selecionada" src="{{ foto }}"></ion-img>
-              </ion-avatar>
+                  <pdp-camera-button
+                    (caminhoFoto)="recebeFotoEmitidaPeloComponentButton($event)"
+                  ></pdp-camera-button>
 
-              <!-- template com imagem default de avatar -->
-              <ng-template #fotoDefault>
-                <!--<ion-img class="img-avatar-default" src="./assets/img/user-default.png" color="tertiary"></ion-img>-->
-                <ion-icon class="img-avatar-default" name="person" color="secondary"></ion-icon>
-              </ng-template>
+                  <!-- campo nome -->
+                  <ion-item lines="none" class="campo-form">
+                    <ion-label position="stacked">Nome</ion-label>
+                    <ion-input formControlName="nome" type="text"></ion-input>
+                    <ion-note
+                      class="ion-align-self-center"
+                      slot="end"
+                      color="primary"
+                      *ngIf="nome.dirty && nome.hasError('required')"
+                      >Obrigatório</ion-note
+                    >
+                    <ion-note
+                      class="ion-align-self-center"
+                      slot="end"
+                      color="primary"
+                      *ngIf="nome.dirty && nome.hasError('minlength')"
+                      >Min 3 caracteres</ion-note
+                    >
+                    <ion-icon
+                      class="ion-align-self-center"
+                      name="person"
+                      color="primary"
+                      slot="end"
+                    >
+                    </ion-icon>
+                  </ion-item>
+                </ng-container>
 
-              <pdp-camera-button (caminhoFoto)="recebeFotoEmitidaPeloComponentButton($event)"></pdp-camera-button>
+                <!-- campo login -->
+                <ion-item lines="none" class="campo-form">
+                  <ion-label position="stacked">Login</ion-label>
+                  <ion-input
+                    formControlName="email"
+                    type="email"
+                    inputmode="email"
+                    autofocus="false"
+                  ></ion-input>
+                  <ion-note
+                    class="ion-align-self-center"
+                    slot="end"
+                    color="primary"
+                    *ngIf="email.dirty && email.hasError('required')"
+                    >Obrigatório</ion-note
+                  >
+                  <ion-note
+                    class="ion-align-self-center"
+                    slot="end"
+                    color="primary"
+                    *ngIf="email.dirty && email.hasError('email')"
+                    >Email Inválido</ion-note
+                  >
+                  <ion-icon class="ion-align-self-center" name="mail" color="primary" slot="end">
+                  </ion-icon>
+                </ion-item>
 
-              <!-- campo nome -->
-              <ion-item lines="none" class="campo-form">
-                <ion-label position="stacked">Nome</ion-label>
-                <ion-input formControlName="nome" type="text"></ion-input>
-                <ion-note class="ion-align-self-center" slot="end" color="primary" *ngIf="nome.dirty && nome.hasError('required')">Obrigatório</ion-note>
-                <ion-note class="ion-align-self-center" slot="end" color="primary" *ngIf="nome.dirty && nome.hasError('minlength')">Min 3 caracteres</ion-note>
-                <ion-icon class="ion-align-self-center" name="person" color="primary" slot="end"> </ion-icon>
-              </ion-item>
-            </ng-container>
+                <!-- campo senha -->
+                <ion-item lines="none" class="campo-form">
+                  <ion-label position="stacked">Senha</ion-label>
+                  <ion-input formControlName="senha" type="password"></ion-input>
+                  <ion-note
+                    class="ion-align-self-center"
+                    slot="end"
+                    color="primary"
+                    *ngIf="senha.dirty && senha.hasError('required')"
+                    >Obrigatório</ion-note
+                  >
+                  <ion-note
+                    class="ion-align-self-center"
+                    slot="end"
+                    color="primary"
+                    *ngIf="senha.dirty && senha.hasError('minlength')"
+                    >Min 6 caracteres</ion-note
+                  >
+                  <ion-icon class="ion-align-self-center" name="lock" color="primary" slot="end">
+                  </ion-icon>
+                </ion-item>
 
-            <!-- campo login -->
-            <ion-item lines="none" class="campo-form">
-              <ion-label position="stacked">Login</ion-label>
-              <ion-input formControlName="email" type="email" inputmode="email" autofocus="false"></ion-input>
-              <ion-note class="ion-align-self-center" slot="end" color="primary" *ngIf="email.dirty && email.hasError('required')">Obrigatório</ion-note>
-              <ion-note class="ion-align-self-center" slot="end" color="primary" *ngIf="email.dirty && email.hasError('email')">Email Inválido</ion-note>
-              <ion-icon class="ion-align-self-center" name="mail" color="primary" slot="end"> </ion-icon>
-            </ion-item>
+                <!-- botao de entrar / cadastrar -->
+                <ion-item class="item-btn-entrar" lines="none">
+                  <ion-button
+                    class="btn-entrar"
+                    type="submit"
+                    color="primary"
+                    slot="end"
+                    [disabled]="authForm.invalid"
+                    >{{ configs.action }}</ion-button
+                  >
+                </ion-item>
 
-            <!-- campo senha -->
-            <ion-item lines="none" class="campo-form">
-              <ion-label position="stacked">Senha</ion-label>
-              <ion-input formControlName="senha" type="password"></ion-input>
-              <ion-note class="ion-align-self-center" slot="end" color="primary" *ngIf="senha.dirty && senha.hasError('required')">Obrigatório</ion-note>
-              <ion-note class="ion-align-self-center" slot="end" color="primary" *ngIf="senha.dirty && senha.hasError('minlength')">Min 6 caracteres</ion-note>
-              <ion-icon class="ion-align-self-center" name="lock" color="primary" slot="end"> </ion-icon>
-            </ion-item>
-
-            <!-- botao de entrar / cadastrar -->
-            <ion-button class="btn-entrar" type="submit" expand="block" color="primary" [disabled]="authForm.invalid">{{ configs.action }}</ion-button>
-
-            <!-- <div *ngIf="configs.isSignIn" class="ion-text-center">
+                <!-- <div *ngIf="configs.isSignIn" class="ion-text-center">
               <ion-label color="light">- ou -</ion-label>
             </div> -->
-          </form>
-          <!-- =============== botão de login com facebook =================== -->
-          <!-- <ion-button *ngIf="configs.isSignIn" fill="clear" expand="block" color="tertiary" (click)="signin(authProviders.Facebook)">Login com Facebook</ion-button> -->
+              </form>
+              <!-- =============== botão de login com facebook =================== -->
+              <!-- <ion-button *ngIf="configs.isSignIn" fill="clear" expand="block" color="tertiary" (click)="signin(authProviders.Facebook)">Login com Facebook</ion-button> -->
 
-          <!-- botão recuperar senha -->
-          <ion-button *ngIf="configs.isSignIn" expand="block" fill="clear" color="primary" (click)="recuperaSenha()">Esqueci minha senha</ion-button>
-
-          <!-- botão cadastrar (muda formulário para cadastro) -->
-          <ion-button expand="block" fill="clear" color="primary" (click)="alternarEntreLoginCadastro()">{{ configs.actionChange }}</ion-button>
+              <!-- botão recuperar senha -->
+              <ion-button
+                *ngIf="configs.isSignIn"
+                expand="block"
+                fill="clear"
+                color="primary"
+                (click)="recuperaSenha()"
+                >Esqueci minha senha</ion-button
+              >
+              <!-- botão cadastrar (muda formulário para cadastro) -->
+              <ion-button
+                expand="block"
+                fill="clear"
+                color="primary"
+                (click)="alternarEntreLoginCadastro()"
+                >{{ configs.actionChange }}</ion-button
+              >
+            </ion-card-content>
+          </ion-card>
         </ion-col>
       </ion-row>
     </ion-grid>

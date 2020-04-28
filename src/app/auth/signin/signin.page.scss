@@ -1,7 +1,38 @@
-/*ion-content {
-  // --background: linear-gradient(#6958AF, #38AECC) !important;
-  --background: linear-gradient(rgba(105,88,175,1), rgba(255,0,0,0)) !important;
-} */
+ion-content {
+  --background: linear-gradient(#6958AF, #38AECC) !important;
+  //--background: linear-gradient(#8470d6, #322953) !important;
+}
+
+// ion-avatar com img dentro
+.avatar {
+  border: solid 4px #A89CD7;
+  margin: auto;
+  //margin-top: 5%;
+  text-align: center;
+  width: 90px;
+  height : 90px;
+}
+
+.btn-entrar {
+  --border-radius: 8px !important;
+}
+
+// campos do formulario
+.campo-form {
+  --border-radius: 15px !important;
+  --background: rgb(224, 224, 224);
+  margin-bottom: 3%;
+  color: #6958AF;
+}
+
+.campo-form ion-input {
+  font-weight: bold;
+}
+// card do formulário
+.card-form {
+  border-radius: 15px;
+  background: #fff;
+}
 
 .div-principal {
   padding-left: 2px;
@@ -11,64 +42,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-// ion-avatar com img dentro
-.avatar-img {
-  border: solid 4px #A89CD7;
-  margin: auto;
-  margin-top: 5%;
-  text-align: center;
-  width: 130px;
-  height : 130px;
-}
-
-// img quando selecionada foto
-.img-avatar-selecionada {
-  width: 100%;
-  margin: auto;
-  object-fit: cover;
-  top: 10%;
-}
-
-// img default (boneco profile)
-.img-avatar-default {
-  display: block;
-  margin: auto;
-  text-align: center;
-  width: 90px;
-  height : 90px;
-}
-
-.item-btns {
-  --background: rgba(0, 0, 0, 0);
-  color: #fff;
-}
-
-// campos do formulario
-.campo-form {
-  --border-radius: 15px !important;
-  --background: rgb(214, 214, 214);
-  margin-bottom: 3%;
-  color: #6958AF;
-}
-
-.campo-form ion-input {
-  font-weight: bold;
-}
-
-.btn-entrar {
-  --border-radius: 8px !important;
-}
-
-// separador dos campos de login
-.separador-elems-login {
-  height: 3%;
-}
-
-// separador img do formulario de login
-.separador-img-login {
-  height: 8%;
 }
 
 // imagem logo do pais de pet
@@ -82,12 +55,45 @@
   margin-right: auto;
 }
 
-.img-logo-empresa {
-  max-width: 75px;
-  max-height: 75px;
-  width: auto;
-  height: auto;
+// img quando selecionada foto
+.img-avatar-selecionada {
+  width: 100%;
+  margin: auto;
+  object-fit: cover;
+  //top: 10%;
+}
+
+// img default (boneco profile)
+.img-avatar-default {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
+  text-align: center;
+  width: 60px;
+  height : 60px;
+}
+
+.item-btns {
+  --background: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+
+
+.item-btn-entrar {
+  --inner-padding-end: none;
+}
+
+.item-btn-entrar ion-button {
+  height: 45px;
+  width: 110px;
+}
+
+// separador dos campos de login
+.separador-elems-login {
+  height: 3%;
+}
+
+// separador img do formulario de login
+.separador-img-login {
+  height: 8%;
 }
