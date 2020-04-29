@@ -1,19 +1,30 @@
 <ion-app>
-  <ion-split-pane contentId="main-content">
+  <ion-split-pane *ngIf="ehBrowser" contentId="main-content">
     <ion-menu contentId="main-content" menuId="main-menu" type="overlay" [disabled]="true">
       <ion-header no-border no-shadow>
-        <ion-toolbar class="header" color="primary">
+        <ion-title class="data-menu" color="light">{{ dataHoje}}</ion-title>
+        <ion-avatar class="avatar">
+          <ion-img *ngIf="usuario" class="img-avatar" src="{{ usuario.photoURL }}"></ion-img>
+        </ion-avatar>
+        <ion-title *ngIf="usuario" class="nome-menu" color="light">{{ usuario.displayName }}</ion-title>
+        <ion-title *ngIf="usuario" class="email-menu" color="light">{{ usuario.email }}</ion-title>
+        <!--<ion-toolbar class="header" color="primary">
           <ion-title>Menu</ion-title>
-        </ion-toolbar>
+        </ion-toolbar>-->
       </ion-header>
       <ion-content>
         <ion-list class="item-menu">
           <!-- <ion-list-header *ngIf="usuario">{{ usuario.displayName }}</ion-list-header> -->
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item class="item-menu" lines="none" [routerDirection]="'root'" [routerLink]="[p.url]">
+            <ion-item
+              class="item-menu"
+              lines="none"
+              [routerDirection]="'root'"
+              [routerLink]="[p.url]"
+            >
               <ion-icon slot="start" [name]="p.icon"></ion-icon>
               <ion-label>
-                {{p.title}}
+                {{ p.title }}
               </ion-label>
             </ion-item>
           </ion-menu-toggle>

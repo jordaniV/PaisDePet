@@ -4,6 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthService } from './core/services/auth.service';
+import { PlataformaService } from './shared/services/plataforma.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,9 @@ export class AppComponent {
 
   usuario: firebase.User;
   nome = '';
-
+  ehBrowser = false;
+  dataHoje;
+  foto;
 
   public appPages = [
     {
@@ -33,9 +36,12 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private authService: AuthService
+    private authService: AuthService,
+    private plataformaService: PlataformaService
   ) {
     this.initializeApp();
+    this.ehBrowser = this.plataformaService.ehBrowser();
+    this.dataHoje = new Date().toLocaleDateString();
   }
 
   initializeApp() {
@@ -49,5 +55,4 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
-
 }

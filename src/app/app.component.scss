@@ -3,28 +3,67 @@ ion-menu {
   max-width: 300px !important;
 }
 
-ion-toolbar {
-  border-radius: 0px 0px 0px 20px;
+/*ion-toolbar {
+  border-radius: 0px 0px 0px 0px;
+}*/
+
+/*ion-content {
+  --background: #6958af !important;
+}*/
+
+ion-header {
+  height: 200px !important;
+  background: #000000;
 }
 
-ion-content {
-  --background: #6958af !important;
+// ion-avatar com img dentro
+.avatar {
+  border: solid 3px #A89CD7;
+  margin: auto;
+  margin-top: 3%;
+  text-align: center;
+  width: 90px;
+  height : 90px;
+}
+
+.data-menu {
+  margin-top: 3%;
+  font-size: 12px;
+}
+
+.email-menu {
+  text-align: center;
+  font-size: 12px;
 }
 
 .split-pane-side {
   border-right: 0px !important;
 }
 
-.item-menu {
+/*.item-menu {
   border-right: 0px !important;
   --background: #6958af;
+}*/
+
+// img quando selecionada foto
+.img-avatar {
+  width: 100%;
+  margin: auto;
+  object-fit: cover;
+  //top: 10%;
 }
-:hover.item-menu {
-  color: #fff;
-  background: #fff;
+
+.nome-menu {
+  text-align: center;
+  margin-top: 3%;
+}
+
+/*:hover.item-menu {
+  color: rgb(94, 87, 87);
+  background: rgb(2, 2, 2);
   --color-hover: #000;
 }
 
 :hover.item-menu ion-icon {
   color: #000;
-}
+}*/
