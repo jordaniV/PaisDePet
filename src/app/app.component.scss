@@ -7,23 +7,23 @@ ion-menu {
   border-radius: 0px 0px 0px 0px;
 }*/
 
-/*ion-content {
-  --background: #6958af !important;
-}*/
+ion-content {
+  --background: linear-gradient(#6958af, #38aecc) !important;
+}
 
 ion-header {
   height: 200px !important;
-  background: #000000;
+  background: linear-gradient(#6958af, #38aecc) !important;
 }
 
 // ion-avatar com img dentro
 .avatar {
-  border: solid 3px #A89CD7;
+  border: solid 3px #a89cd7;
   margin: auto;
   margin-top: 3%;
   text-align: center;
   width: 90px;
-  height : 90px;
+  height: 90px;
 }
 
 .data-menu {
@@ -40,10 +40,15 @@ ion-header {
   border-right: 0px !important;
 }
 
-/*.item-menu {
-  border-right: 0px !important;
-  --background: #6958af;
-}*/
+.lista-menu {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.item-menu {
+  background-color: rgba(0, 0, 0, 0);
+  // border-right: 0px !important;
+  // --background: #6958af;
+}
 
 // img quando selecionada foto
 .img-avatar {

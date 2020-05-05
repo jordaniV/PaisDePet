@@ -7,9 +7,8 @@
         </h1>
         <div class="texto-principal">
           <h2>Esta página não está disponível!</h2>
-          <p>
-            O link que você acessou pode estar quebrado ou a página pode ter sido removida.
-          </p>
+          <br>
+          <ion-button *ngIf="!ehBrowser" color="tertiary" (click)="retornaParaTelaDeLogin()">Retornar a Home</ion-button>
         </div>
       </ion-col>
     </ion-row>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { PlataformaService } from 'src/app/shared/services/plataforma.service';
 
 @Component({
   selector: 'app-nao-encontrado',
@@ -7,8 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NaoEncontradoComponent implements OnInit {
 
-  constructor() { }
+  ehBrowser;
+  constructor(
+    private navCtrl: NavController,
+    private plataformaService: PlataformaService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.ehBrowser = this.plataformaService.ehBrowser();
+  }
+
+  retornaParaTelaDeLogin() {
+    this.navCtrl.navigateRoot('/home');
+  }
 
 }

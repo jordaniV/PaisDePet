@@ -1,22 +1,22 @@
-<ion-content >
+<ion-content>
   <div class="div-principal">
     <ion-grid>
+
       <ion-row class="ion-justify-content-center">
-        <ion-col size="12" size-sm="8" size-md="6" size-lg="6" size-xl="3">
+        <ion-col size-sm="4" size-md="6" size-lg="6" size-xl="3">
+          <img
+            class="img-logo-app"
+            *ngIf="configs.isSignIn"
+            src="../assets/img/paisdepet-logo.png"
+            (click)="segredo()"
+          />
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-justify-content-center">
+        <ion-col size-sm="4" size-md="6" size-lg="6" size-xl="3">
           <ion-card class="card-form">
-            <ion-card-header>
-              <img
-                class="img-logo-app"
-                *ngIf="configs.isSignIn"
-                src="../assets/img/paisdepet-logo.png"
-                (click)="segredo()"
-              />
-            </ion-card-header>
             <ion-card-content>
-              <!-- logo -->
-
-              <div *ngIf="configs.isSignIn" class="separador-img-login"></div>
-
               <!-- =============== início forms =================== -->
               <form [formGroup]="authForm" (submit)="signin(authProviders.Email)">
                 <ng-container *ngIf="!configs.isSignIn">
@@ -112,16 +112,14 @@
                 </ion-item>
 
                 <!-- botao de entrar / cadastrar -->
-                <ion-item class="item-btn-entrar" lines="none">
                   <ion-button
                     class="btn-entrar"
                     type="submit"
+                    expand="block"
                     color="primary"
-                    slot="end"
                     [disabled]="authForm.invalid"
                     >{{ configs.action }}</ion-button
                   >
-                </ion-item>
 
                 <!-- <div *ngIf="configs.isSignIn" class="ion-text-center">
               <ion-label color="light">- ou -</ion-label>
@@ -147,6 +145,7 @@
                 (click)="alternarEntreLoginCadastro()"
                 >{{ configs.actionChange }}</ion-button
               >
+              <!-- <img class="img-logo-dome" src="../assets/img/logo-dome.png" /> -->
             </ion-card-content>
           </ion-card>
         </ion-col>

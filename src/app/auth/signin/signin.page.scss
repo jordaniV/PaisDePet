@@ -13,10 +13,6 @@ ion-content {
   height : 90px;
 }
 
-.btn-entrar {
-  --border-radius: 8px !important;
-}
-
 // campos do formulario
 .campo-form {
   --border-radius: 15px !important;
@@ -48,6 +44,16 @@ ion-content {
 .img-logo-app {
   max-width: 200px;
   max-height: 200px;
+  width: auto;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.img-logo-dome {
+  max-width: 100px;
+  max-height: 100px;
   width: auto;
   height: auto;
   display: block;

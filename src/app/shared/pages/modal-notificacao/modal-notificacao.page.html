@@ -2,15 +2,30 @@
   <div class="div-principal">
     <ion-grid>
       <ion-row class="ion-justify-content-center">
-        <ion-col size-sm="8" size-md="6" size-lg="6" size-xl="6">
-
+        <ion-col size="12">
           <h1 class="ion-text-center">
             <ion-icon [name]="icone" color="secondary" class="icone-7em"></ion-icon>
           </h1>
-          <ion-textarea class="ion-text-center" color="light">{{ txtPrincipal }}</ion-textarea>
-          <ion-button class="btn-fechar" expand="block" shape="round" color="tertiary" (click)="retornarParaTelaDeLogin()">{{ txtBotao }}</ion-button>
-
         </ion-col>
+
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="12">
+            <ion-textarea class="ion-text-center" color="light">{{ txtPrincipal }}</ion-textarea>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="12">
+            <ion-button
+              class="btn-fechar"
+              expand="block"
+              shape="round"
+              color="tertiary"
+              (click)="retornarParaTelaDeLogin()"
+              >{{ txtBotao }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
       </ion-row>
     </ion-grid>
   </div>
