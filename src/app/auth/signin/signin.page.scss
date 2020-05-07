@@ -5,12 +5,21 @@ ion-content {
 
 // ion-avatar com img dentro
 .avatar {
-  border: solid 4px #A89CD7;
-  margin: auto;
-  //margin-top: 5%;
-  text-align: center;
+  border: solid 4px #66AB8C;
+  background-color: #66AB8C;
+  box-shadow: 0px 6px 10px rgba(180, 180, 180, 0.5);
+  display: flex;
+  position: fixed;
+  top: 20%;
+  align-items: center;
+  left: 47.7%;
   width: 90px;
   height : 90px;
+}
+
+.btn-escolhe-foto {
+  display: block;
+  margin-top: 11%;
 }
 
 // campos do formulario
@@ -24,12 +33,14 @@ ion-content {
 .campo-form ion-input {
   font-weight: bold;
 }
+
 // card do formulário
-.card-form {
+.card {
   border-radius: 15px;
   background: #fff;
 }
 
+// primeira div (engloba o ion-grid)
 .div-principal {
   padding-left: 2px;
   padding-right: 2px;
@@ -52,8 +63,8 @@ ion-content {
 }
 
 .img-logo-dome {
-  max-width: 100px;
-  max-height: 100px;
+  max-width: 150px;
+  max-height: 150px;
   width: auto;
   height: auto;
   display: block;
@@ -66,16 +77,14 @@ ion-content {
   width: 100%;
   margin: auto;
   object-fit: cover;
-  //top: 10%;
 }
 
 // img default (boneco profile)
 .img-avatar-default {
   display: block;
   margin: auto;
-  text-align: center;
   width: 60px;
-  height : 60px;
+  height: 60px;
 }
 
 .item-btns {

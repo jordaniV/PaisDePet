@@ -177,7 +177,8 @@ export class SigninPage implements OnInit {
     await this.overlayService.modal({
       component: ModalNotificacaoPage,
       componentProps: {
-        txtPrincipal: 'Usuário cadastrado com sucesso!',
+        // tslint:disable-next-line:max-line-length
+        txtPrincipal: 'Usuário cadastrado com sucesso! Agora você pode cadastrar seus pets e ter controle sobre vacinas, manutenção e muito mais... Faça bom uso!',
         txtBotao: 'Acessar Pais de Pet',
         icone: 'checkmark-circle-outline',
         rota: '/login'

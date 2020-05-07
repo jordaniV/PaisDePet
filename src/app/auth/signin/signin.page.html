@@ -1,7 +1,6 @@
 <ion-content>
   <div class="div-principal">
     <ion-grid>
-
       <ion-row class="ion-justify-content-center">
         <ion-col size-sm="4" size-md="6" size-lg="6" size-xl="3">
           <img
@@ -15,7 +14,7 @@
 
       <ion-row class="ion-justify-content-center">
         <ion-col size-sm="4" size-md="6" size-lg="6" size-xl="3">
-          <ion-card class="card-form">
+          <ion-card class="card">
             <ion-card-content>
               <!-- =============== início forms =================== -->
               <form [formGroup]="authForm" (submit)="signin(authProviders.Email)">
@@ -27,17 +26,19 @@
 
                   <!-- template com imagem default de avatar -->
                   <ng-template #fotoDefault>
-                    <ion-icon class="img-avatar-default" name="person" color="secondary"></ion-icon>
+                    <ion-avatar class="avatar">
+                      <ion-icon class="img-avatar-default" name="person" color="light"></ion-icon>
+                    </ion-avatar>
                   </ng-template>
 
                   <pdp-camera-button
+                    class="btn-escolhe-foto"
                     (caminhoFoto)="recebeFotoEmitidaPeloComponentButton($event)"
                   ></pdp-camera-button>
 
                   <!-- campo nome -->
                   <ion-item lines="none" class="campo-form">
-                    <ion-label position="stacked">Nome</ion-label>
-                    <ion-input formControlName="nome" type="text"></ion-input>
+                    <ion-input formControlName="nome" type="text" placeholder="Nome"></ion-input>
                     <ion-note
                       class="ion-align-self-center"
                       slot="end"
@@ -64,12 +65,12 @@
 
                 <!-- campo login -->
                 <ion-item lines="none" class="campo-form">
-                  <ion-label position="stacked">Login</ion-label>
                   <ion-input
                     formControlName="email"
                     type="email"
                     inputmode="email"
                     autofocus="false"
+                    placeholder="Email"
                   ></ion-input>
                   <ion-note
                     class="ion-align-self-center"
@@ -91,8 +92,11 @@
 
                 <!-- campo senha -->
                 <ion-item lines="none" class="campo-form">
-                  <ion-label position="stacked">Senha</ion-label>
-                  <ion-input formControlName="senha" type="password"></ion-input>
+                  <ion-input
+                    formControlName="senha"
+                    type="password"
+                    placeholder="Senha"
+                  ></ion-input>
                   <ion-note
                     class="ion-align-self-center"
                     slot="end"
@@ -112,18 +116,17 @@
                 </ion-item>
 
                 <!-- botao de entrar / cadastrar -->
-                  <ion-button
-                    class="btn-entrar"
-                    type="submit"
-                    expand="block"
-                    color="primary"
-                    [disabled]="authForm.invalid"
-                    >{{ configs.action }}</ion-button
-                  >
+                <ion-button
+                  class="btn-entrar"
+                  type="submit"
+                  expand="block"
+                  color="primary"
+                  [disabled]="authForm.invalid"
+                  >{{ configs.action }}</ion-button
+                >
 
                 <!-- <div *ngIf="configs.isSignIn" class="ion-text-center">
-              <ion-label color="light">- ou -</ion-label>
-            </div> -->
+              <ion-label color="light">- ou -</ion-label></div> -->
               </form>
               <!-- =============== botão de login com facebook =================== -->
               <!-- <ion-button *ngIf="configs.isSignIn" fill="clear" expand="block" color="tertiary" (click)="signin(authProviders.Facebook)">Login com Facebook</ion-button> -->
@@ -145,7 +148,7 @@
                 (click)="alternarEntreLoginCadastro()"
                 >{{ configs.actionChange }}</ion-button
               >
-              <!-- <img class="img-logo-dome" src="../assets/img/logo-dome.png" /> -->
+              <!--  <img class="img-logo-dome" src="../assets/img/logo-dome.png" /> -->
             </ion-card-content>
           </ion-card>
         </ion-col>
