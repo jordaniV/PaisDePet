@@ -1,6 +1,11 @@
 ion-menu {
-  min-width: 300px !important;
-  max-width: 300px !important;
+  min-width: 250px !important;
+  max-width: 250px !important;
+}
+
+ion-icon {
+  border: solid 2px #fbcb6e;
+  border-radius: 100px;
 }
 
 /*ion-toolbar {
@@ -11,29 +16,19 @@ ion-content {
   --background: linear-gradient(#6958af, #38aecc) !important;
 }
 
-ion-header {
+/*ion-header {
   height: 200px !important;
   background: linear-gradient(#6958af, #38aecc) !important;
-}
+} */
 
 // ion-avatar com img dentro
 .avatar {
   border: solid 3px #a89cd7;
   margin: auto;
-  margin-top: 3%;
+  margin-top: 10%;
   text-align: center;
-  width: 90px;
-  height: 90px;
-}
-
-.data-menu {
-  margin-top: 3%;
-  font-size: 12px;
-}
-
-.email-menu {
-  text-align: center;
-  font-size: 12px;
+  width: 70px;
+  height: 70px;
 }
 
 .split-pane-side {
@@ -42,12 +37,7 @@ ion-header {
 
 .lista-menu {
   background-color: rgba(0, 0, 0, 0);
-}
-
-.item-menu {
-  background-color: rgba(0, 0, 0, 0);
-  // border-right: 0px !important;
-  // --background: #6958af;
+  margin-top: 25%;
 }
 
 // img quando selecionada foto
@@ -60,7 +50,14 @@ ion-header {
 
 .nome-menu {
   text-align: center;
-  margin-top: 3%;
+  margin-top: 5%;
+  font-size: 12pt;
+}
+
+.email-menu {
+  text-align: center;
+  margin-top: 2%;
+  font-size: 9pt;
 }
 
 /*:hover.item-menu {

@@ -54,6 +54,7 @@ export class CameraButtonComponent implements OnInit {
   */
   selecionaImagemPeloBrowser($event): void {
     this.file = URL.createObjectURL($event.target.files[0]);
+    console.log(this.file);
     this.caminhoFoto.emit(this.file);
   }
 

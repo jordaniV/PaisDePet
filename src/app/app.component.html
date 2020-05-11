@@ -2,35 +2,37 @@
   <ion-split-pane *ngIf="ehBrowser" contentId="main-content">
     <ion-menu contentId="main-content" menuId="main-menu" type="overlay" [disabled]="true">
       <!-- <ion-header no-border no-shadow>
-        <ion-title class="data-menu" color="light">{{ dataHoje}}</ion-title>
-        <ion-avatar class="avatar">
-          <ion-img *ngIf="usuario" class="img-avatar" src="{{ usuario.photoURL }}"></ion-img>
-        </ion-avatar>
-        <ion-title *ngIf="usuario" class="nome-menu" color="light">{{ usuario.displayName }}</ion-title>
-        <ion-title *ngIf="usuario" class="email-menu" color="light">{{ usuario.email }}</ion-title>
-        <ion-toolbar class="header" color="primary">
-          <ion-title>Menu</ion-title>
-        </ion-toolbar>
+        <ion-item>
+          <ion-avatar class="avatar">
+            <ion-img *ngIf="usuario" class="img-avatar" src="{{ usuario.photoURL }}"></ion-img>
+          </ion-avatar>
+          <ion-title *ngIf="usuario" class="nome-menu" color="light">{{
+            usuario.displayName
+          }}</ion-title>
+        </ion-item>
+        <ion-toolbar class="header" color="primary"> </ion-toolbar>
       </ion-header> -->
-      <ion-content>
-
-        <ion-title class="data-menu" color="light">{{ dataHoje }}</ion-title>
+      <ion-content color="primary">
         <ion-avatar class="avatar">
           <ion-img *ngIf="usuario" class="img-avatar" src="{{ usuario.photoURL }}"></ion-img>
         </ion-avatar>
-        <ion-title *ngIf="usuario" class="nome-menu" color="light">{{ usuario.displayName }}</ion-title>
-        <ion-title *ngIf="usuario" class="email-menu" color="light">{{ usuario.email }}</ion-title>
+          <ion-title *ngIf="usuario" class="nome-menu" color="tertiary">
+            {{ usuario.displayName }}
+          </ion-title>
+          <ion-title *ngIf="usuario" class="email-menu" color="tertiary">
+            {{ usuario.email }}
+          </ion-title>
 
         <ion-list class="lista-menu">
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
             <ion-item
-              class="item-menu"
+              color="primary"
               lines="none"
               [routerDirection]="'root'"
               [routerLink]="[p.url]"
             >
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
-              <ion-label>
+              <ion-icon slot="start" [name]="p.icon" color="tertiary"></ion-icon>
+              <ion-label color="tertiary">
                 {{ p.title }}
               </ion-label>
             </ion-item>

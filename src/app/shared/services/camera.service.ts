@@ -34,6 +34,19 @@ export class CameraService {
       sourceType: tipoCaminho
     };
 
+    /* testar esse código */
+    /*this.camera.getPicture(options).then(
+      (imageData) => {
+        // imageData is either a base64 encoded string or a file URI
+        // If it's base64 (DATA_URL):
+        const base64Image = 'data:image/jpeg;base64,' + imageData;
+        return this.foto = base64Image;
+      },
+      (err) => {
+        // Handle error
+      }
+    ); */
+
     try {
       try {
         const imageData = await this.camera.getPicture(options);
